@@ -19,6 +19,7 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := native-activity
 LOCAL_SRC_FILES := main.c \
 		CppMix.cpp \
+		findobj/component/AppDelegate.cpp \
 		findobj/util/Config.cpp \
 		findobj/util/Log.cpp 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)
