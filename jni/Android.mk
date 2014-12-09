@@ -16,7 +16,7 @@ LOCAL_PATH := $(call my-dir)
 
 include $(CLEAR_VARS)
 
-LOCAL_MODULE    := native-activity
+LOCAL_MODULE    := native
 LOCAL_SRC_FILES := main.c \
 		CppMix.cpp \
 		findobj/component/AppDelegate.cpp \
