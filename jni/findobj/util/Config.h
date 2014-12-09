@@ -7,6 +7,4 @@ public:
 	static bool DEBUG;
 };
 
-bool Config::DEBUG = true;
-
 #endif
