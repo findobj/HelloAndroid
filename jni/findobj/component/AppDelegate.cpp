@@ -12,7 +12,6 @@ AppDelegate::~AppDelegate()
 
 int AppDelegate::main()
 {
-	Log::i("AppDelegate", "main");
 	AStar *astar = new AStar();
 	astar->test();
 	delete astar;

@@ -23,6 +23,7 @@ LOCAL_SRC_FILES := main.c \
 		findobj/foundation/AStar.cpp \
 		findobj/foundation/Object.cpp \
 		findobj/foundation/Node.cpp \
+		findobj/foundation/Tile.cpp \
 		findobj/util/Config.cpp \
 		findobj/util/Log.cpp 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
