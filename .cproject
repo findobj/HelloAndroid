@@ -25,6 +25,7 @@
 								<option id="gnu.both.asm.option.include.paths.855642570" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1516724757" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -35,6 +36,7 @@
 								<option id="gnu.cpp.compiler.option.include.paths.1529792232" name="Include paths (-I)" superClass="gnu.cpp.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.108216603" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
 							</tool>
@@ -44,6 +46,7 @@
 								<option id="gnu.c.compiler.option.include.paths.456386419" name="Include paths (-I)" superClass="gnu.c.compiler.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.606568863" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>
@@ -83,6 +86,7 @@
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-8\arch-arm\usr\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1351028475" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -94,6 +98,7 @@
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-8\arch-arm\usr\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1331067124" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
 							</tool>
@@ -104,6 +109,7 @@
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-8\arch-arm\usr\include&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\cxx-stl\stlport\stlport&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1754018348" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>
