@@ -1,5 +1,5 @@
 #include "AppDelegate.h"
-#include "findobj/util/Util.h"
+#include "findobj/Util.h"
 #include "findobj/foundation/AStar.h"
 
 AppDelegate::AppDelegate()

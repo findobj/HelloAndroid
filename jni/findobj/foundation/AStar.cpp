@@ -1,5 +1,5 @@
 #include "AStar.h"
-#include "findobj/util/Util.h"
+#include "findobj/Util.h"
 
 void AStar::test()
 {
