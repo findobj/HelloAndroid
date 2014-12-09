@@ -275,17 +275,17 @@ void android_main(struct android_app* state) {
             }
 
             // If a sensor has data, process it now.
-            if (ident == LOOPER_ID_USER) {
-                if (engine.accelerometerSensor != NULL) {
-                    ASensorEvent event;
-                    while (ASensorEventQueue_getEvents(engine.sensorEventQueue,
-                            &event, 1) > 0) {
-                        LOGI("accelerometer: x=%f y=%f z=%f",
-                                event.acceleration.x, event.acceleration.y,
-                                event.acceleration.z);
-                    }
-                }
-            }
+//            if (ident == LOOPER_ID_USER) {
+//                if (engine.accelerometerSensor != NULL) {
+//                    ASensorEvent event;
+//                    while (ASensorEventQueue_getEvents(engine.sensorEventQueue,
+//                            &event, 1) > 0) {
+//                        LOGI("accelerometer: x=%f y=%f z=%f",
+//                                event.acceleration.x, event.acceleration.y,
+//                                event.acceleration.z);
+//                    }
+//                }
+//            }
 
             // Check if we are exiting.
             if (state->destroyRequested != 0) {
@@ -303,7 +303,7 @@ void android_main(struct android_app* state) {
 
             // Drawing is throttled to the screen update rate, so there
             // is no need to do timing here.
-            engine_draw_frame(&engine);
+//            engine_draw_frame(&engine);
         }
     }
 }
