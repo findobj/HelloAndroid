@@ -294,17 +294,17 @@ void android_main(struct android_app* state) {
             }
         }
 
-        if (engine.animating) {
-            // Done with events; draw next animation frame.
-            engine.state.angle += .01f;
-            if (engine.state.angle > 1) {
-                engine.state.angle = 0;
-            }
-
-            // Drawing is throttled to the screen update rate, so there
-            // is no need to do timing here.
+//        if (engine.animating) {
+//            // Done with events; draw next animation frame.
+//            engine.state.angle += .01f;
+//            if (engine.state.angle > 1) {
+//                engine.state.angle = 0;
+//            }
+//
+//            // Drawing is throttled to the screen update rate, so there
+//            // is no need to do timing here.
 //            engine_draw_frame(&engine);
-        }
+//        }
     }
 }
 //END_INCLUDE(all)
