@@ -2,3 +2,7 @@ bin/
 Debug/
 gen/
 obj/
+
+.DS_Store
+.cproject
+.project
