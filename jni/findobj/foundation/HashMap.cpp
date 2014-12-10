@@ -223,7 +223,7 @@ int HashMap::hashCode(char *key)
 	int len = strlen(key);
 	unsigned long h = 0, g;
 	char *keyStart = key;
-	char *keyEnd=key+len;
+	char *keyEnd = key + len;
 
 	while (keyStart < keyEnd) {
 		h = (h << 4) + *keyStart++;
