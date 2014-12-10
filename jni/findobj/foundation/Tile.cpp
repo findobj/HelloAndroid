@@ -1,7 +1,8 @@
 #include "Tile.h"
 
-Tile::Tile()
+Tile::Tile(int index)
 {
+	this->index = index;
 }
 
 Tile::~Tile()

@@ -21,9 +21,13 @@ LOCAL_SRC_FILES := main.c \
 		CppMix.cpp \
 		findobj/component/AppDelegate.cpp \
 		findobj/foundation/AStar.cpp \
-		findobj/foundation/Object.cpp \
-		findobj/foundation/Node.cpp \
 		findobj/foundation/Tile.cpp \
+		findobj/foundation/Node.cpp \
+		findobj/foundation/Point.cpp \
+		findobj/foundation/Rect.cpp \
+		findobj/foundation/Size.cpp \
+		findobj/foundation/List.cpp \
+		findobj/foundation/Object.cpp \
 		findobj/util/Config.cpp \
 		findobj/util/Log.cpp 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \

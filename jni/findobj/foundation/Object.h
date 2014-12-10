@@ -6,6 +6,8 @@ class Object
 public:
 	Object();
 	virtual ~Object();
+public:
+	virtual bool equals(Object *obj);
 };
 
 #endif

@@ -6,8 +6,10 @@
 class Tile : public Object
 {
 public:
-	Tile();
+	Tile(int index);
 	virtual ~Tile();
+public:
+	int index;
 };
 
 #endif
