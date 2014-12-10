@@ -1,6 +1,9 @@
 #ifndef __FOUNDATION_H__
 #define __FOUNDATION_H__
 
+#include <stdio.h>
+#include <string.h>
+
 #include "./foundation/Object.h"
 
 #include "./foundation/Point.h"

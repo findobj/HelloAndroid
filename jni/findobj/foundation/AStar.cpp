@@ -5,7 +5,6 @@
 
 void AStar::test()
 {
-	HashMap *map = new HashMap();
-	delete map;
+
 }
 

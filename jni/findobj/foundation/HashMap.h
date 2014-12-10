@@ -23,9 +23,9 @@ protected:
 	virtual void increase();
 	virtual void decrease();
 private:
-	List **mMap;
+	List **mBuckets;
+	int mBucketSize;
 	int mSize;
-	int mCapacity;
 	static const int S_GRANULARITY;
 };
 
