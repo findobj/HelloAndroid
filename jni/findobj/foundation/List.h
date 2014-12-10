@@ -1,9 +1,9 @@
 #ifndef __LIST_H__
 #define __LIST_H__
 
-#include "./Object.h"
+#include "Object.h"
 
-class List
+class List : public Object
 {
 public:
 	List();
@@ -18,6 +18,7 @@ public:
 	virtual void clear();
 	virtual bool contains(Object *obj);
 	virtual int size();
+	virtual bool isEmpty();
 protected:
 	virtual void increase();
 	virtual void decrease();

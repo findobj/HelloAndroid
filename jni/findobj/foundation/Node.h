@@ -1,9 +1,9 @@
 #ifndef __NODE_H__
 #define __NODE_H__
 
-#include "./Object.h"
+#include "Object.h"
 
-class Node
+class Node : public Object
 {
 public:
 	Node();

@@ -1,7 +1,7 @@
 #include "List.h"
 #include <string.h>
 
-const int List::S_GRANULARITY = 4;
+const int List::S_GRANULARITY = 10;
 
 List::List()
 {
@@ -13,10 +13,10 @@ List::List()
 
 List::~List()
 {
-	if(mArray != NULL) {
-		delete mArray;
-		mArray = 0;
+	for(int i = 0; i < mSize; i++) {
+		delete mArray[i];
 	}
+	delete mArray;
 }
 
 void List::add(Object *obj)
@@ -81,6 +81,9 @@ void List::remove(Object *obj)
 
 void List::clear()
 {
+	for(int i = 0; i < mSize; i++) {
+		delete mArray[i];
+	}
 	delete mArray;
 	mSize = 0;
 	mCapacity = S_GRANULARITY;
@@ -105,6 +108,11 @@ bool List::contains(Object *obj)
 int List::size()
 {
 	return mSize;
+}
+
+bool List::isEmpty()
+{
+	return (0 == mSize);
 }
 
 void List::increase()
