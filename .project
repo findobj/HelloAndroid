@@ -27,7 +27,7 @@
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildCommand</key>
-					<value>C:\Android\android-ndk-r8d/ndk-build.cmd</value>
+					<value>/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/ndk-build</value>
 				</dictionary>
 				<dictionary>
 					<key>org.eclipse.cdt.make.core.buildLocation</key>
