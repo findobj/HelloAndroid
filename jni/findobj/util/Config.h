@@ -4,7 +4,8 @@
 class Config
 {
 public:
-	static bool DEBUG;
+	static const bool DEBUG;
+	static const int GRANULARITY_DEFAULT;
 };
 
 #endif

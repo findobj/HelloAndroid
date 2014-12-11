@@ -3,13 +3,12 @@
 #include "List.h"
 #include "AB.h"
 #include "Iterator.h"
-
-const int HashMap::S_GRANULARITY = 4;
+#include "findobj/Util.h"
 
 HashMap::HashMap()
 {
 	mSize = 0;
-	mBucketSize = S_GRANULARITY;
+	mBucketSize = Config::GRANULARITY_DEFAULT;
 	mBuckets = new List*[mBucketSize];
 	memset(mBuckets, 0, sizeof(List*) * mBucketSize);
 }
@@ -19,17 +18,13 @@ HashMap::~HashMap()
 	for(int i = 0; i < mBucketSize; i++) {
 		List* bucket = mBuckets[i];
 		if(bucket != NULL) {
-			for(int j = 0; j < bucket->size(); j++) {
-				AB *ab = (AB*)bucket->get(j);
-				delete (Object*)ab->b;
-			}
 			delete bucket;
 		}
 	}
 	delete mBuckets;
 }
 
-void HashMap::put(char *key, Object *value)
+void HashMap::put(Object *key, Object *value)
 {
 	if(key == NULL ||
 			value == NULL) {
@@ -41,8 +36,7 @@ void HashMap::put(char *key, Object *value)
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
-			char *tmp = (char*)ab->a;
-			if(0 == strcmp(tmp, key)) {
+			if(key->equals(ab->a)) {
 				bucket->remove(i);
 				break;
 			}
@@ -51,11 +45,11 @@ void HashMap::put(char *key, Object *value)
 		bucket = new List();
 		mBuckets[index] = bucket;
 	}
-	bucket->add(new AB((void*)key, (void*)value));
+	bucket->add(new AB(key, value));
 	mSize++;
 }
 
-Object* HashMap::get(char *key)
+Object* HashMap::get(Object *key)
 {
 	if(key == NULL) {
 		return NULL;
@@ -65,16 +59,15 @@ Object* HashMap::get(char *key)
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
-			char *tmp = (char*)ab->a;
-			if(0 == strcmp(tmp, key)) {
-				return (Object*)ab->b;
+			if(key->equals(ab->a)) {
+				return ab->b;
 			}
 		}
 	}
 	return NULL;
 }
 
-void HashMap::remove(char *key)
+void HashMap::remove(Object *key)
 {
 	if(key == NULL) {
 		return ;
@@ -84,8 +77,7 @@ void HashMap::remove(char *key)
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
-			char *tmp = (char*)ab->a;
-			if(0 == strcmp(tmp, key)) {
+			if(key->equals(ab->a)) {
 				bucket->remove(i);
 				mSize--;
 				break;
@@ -94,7 +86,7 @@ void HashMap::remove(char *key)
 	}
 }
 
-bool HashMap::containsKey(char *key)
+bool HashMap::containsKey(Object *key)
 {
 	if(key == NULL) {
 		return false;
@@ -104,8 +96,7 @@ bool HashMap::containsKey(char *key)
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
-			char *tmp = (char*)ab->a;
-			if(0 == strcmp(tmp, key)) {
+			if(key->equals(ab->a)) {
 				return true;
 			}
 		}
@@ -128,23 +119,19 @@ void HashMap::clear()
 	for(int i = 0; i < mSize; i++) {
 		List* bucket = mBuckets[i];
 		if(bucket != NULL) {
-			for(int j = 0; j < bucket->size(); j++) {
-				AB *ab = (AB*)bucket->get(j);
-				delete (Object*)ab->b;
-			}
 			delete bucket;
 		}
 	}
 	delete mBuckets;
 	mSize = 0;
-	mBucketSize = S_GRANULARITY;
+	mBucketSize = Config::GRANULARITY_DEFAULT;
 	mBuckets = new List*[mBucketSize];
 	memset(mBuckets, 0, sizeof(List*) * mBucketSize);
 }
 
 void HashMap::increase()
 {
-	if(mBucketSize >= mSize / 2) {
+	if(mSize <= mBucketSize * 3 / 4) {
 		return ;
 	}
 	Iterator iter;
@@ -154,6 +141,8 @@ void HashMap::increase()
 			for(int j = 0; j < bucket->size(); j++) {
 				AB *ab = (AB*)bucket->get(j);
 				AB *tmp = new AB(ab->a, ab->b);
+				ab->a = NULL;
+				ab->b = NULL;
 				iter.put(tmp);
 			}
 			delete bucket;
@@ -166,8 +155,7 @@ void HashMap::increase()
 	memset(mBuckets, 0, sizeof(List*) * mBucketSize);
 	while(iter.hasNext()) {
 		AB *ab = (AB*)iter.next();
-		char *key = (char*)ab->a;
-		int index = hashCode(key);
+		int index = hashCode(ab->a);
 		List* bucket = mBuckets[index];
 		if(bucket == NULL) {
 			bucket = new List();
@@ -179,10 +167,10 @@ void HashMap::increase()
 
 void HashMap::decrease()
 {
-	if(mBucketSize <= mSize / 2) {
+	if(mSize >= mBucketSize / 4) {
 		return ;
 	}
-	if(mBucketSize <= S_GRANULARITY) {
+	if(mBucketSize <= Config::GRANULARITY_DEFAULT) {
 		return ;
 	}
 	Iterator iter;
@@ -192,19 +180,21 @@ void HashMap::decrease()
 			for(int j = 0; j < bucket->size(); j++) {
 				AB *ab = (AB*)bucket->get(j);
 				AB *tmp = new AB(ab->a, ab->b);
+				ab->a = NULL;
+				ab->b = NULL;
 				iter.put(tmp);
 			}
 			delete bucket;
 		}
 	}
 	delete mBuckets;
+
 	mBucketSize /= 2;
 	mBuckets = new List*[mBucketSize];
 	memset(mBuckets, 0, sizeof(List*) * mBucketSize);
 	while(iter.hasNext()) {
 		AB *ab = (AB*)iter.next();
-		char *key = (char*)ab->a;
-		int index = hashCode(key);
+		int index = hashCode(ab->a);
 		List* bucket = mBuckets[index];
 		if(bucket == NULL) {
 			bucket = new List();
@@ -214,25 +204,13 @@ void HashMap::decrease()
 	}
 }
 
-int HashMap::hashCode(char *key)
+int HashMap::hashCode(Object *key)
 {
 	if(key == NULL) {
 		return 0;
 	}
 
-	int len = strlen(key);
-	unsigned long h = 0, g;
-	char *keyStart = key;
-	char *keyEnd = key + len;
-
-	while (keyStart < keyEnd) {
-		h = (h << 4) + *keyStart++;
-		if ((g = (h & 0xF0000000))) {
-			h = h ^ (g >> 24);
-			h = h ^ g;
-		}
-	}
-
+	int h = key->hashCode();
 	h %= mBucketSize;
 
 	return h;

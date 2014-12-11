@@ -11,22 +11,21 @@ public:
 	HashMap();
 	virtual ~HashMap();
 public:
-	virtual void put(char *key, Object *value);
-	virtual Object* get(char *key);
-	virtual void remove(char *key);
-	virtual bool containsKey(char *key);
+	virtual void put(Object *key, Object *value);
+	virtual Object* get(Object *key);
+	virtual void remove(Object *key);
+	virtual bool containsKey(Object *key);
 	virtual bool isEmpty();
 	virtual int size();
 	virtual void clear();
-	virtual int hashCode(char *key);
 protected:
 	virtual void increase();
 	virtual void decrease();
+	virtual int hashCode(Object *key);
 private:
 	List **mBuckets;
 	int mBucketSize;
 	int mSize;
-	static const int S_GRANULARITY;
 };
 
 #endif

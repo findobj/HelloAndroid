@@ -1,20 +1,21 @@
 #include "Iterator.h"
 #include <string.h>
-
-const int Iterator::S_GRANULARITY = 10;
+#include "findobj/Util.h"
 
 Iterator::Iterator()
 {
 	mSize = 0;
 	mIndex = 0;
-	mCapacity = S_GRANULARITY;
+	mCapacity = Config::GRANULARITY_DEFAULT;
 	mArray = new Object*[mCapacity];
 	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
 
 Iterator::~Iterator()
 {
-	delete mArray;
+	if(mArray != NULL) {
+		delete mArray;
+	}
 }
 
 bool Iterator::hasNext()
@@ -38,7 +39,7 @@ void Iterator::put(Object *obj)
 
 void Iterator::increase()
 {
-	if(mSize <= mCapacity / 2) {
+	if(mSize <= mCapacity * 3 / 4) {
 		return ;
 	}
 	mCapacity *= 2;

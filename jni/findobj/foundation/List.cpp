@@ -1,12 +1,11 @@
 #include "List.h"
 #include <string.h>
-
-const int List::S_GRANULARITY = 10;
+#include "findobj/Util.h"
 
 List::List()
 {
 	mSize = 0;
-	mCapacity = S_GRANULARITY;
+	mCapacity = Config::GRANULARITY_DEFAULT;
 	mArray = new Object*[mCapacity];
 	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
@@ -86,7 +85,7 @@ void List::clear()
 	}
 	delete mArray;
 	mSize = 0;
-	mCapacity = S_GRANULARITY;
+	mCapacity = Config::GRANULARITY_DEFAULT;
 	mArray = new Object*[mCapacity];
 	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
@@ -117,7 +116,7 @@ bool List::isEmpty()
 
 void List::increase()
 {
-	if(mSize <= mCapacity / 2) {
+	if(mSize <= mCapacity * 3 / 4) {
 		return ;
 	}
 	mCapacity *= 2;
@@ -130,10 +129,10 @@ void List::increase()
 
 void List::decrease()
 {
-	if(mSize >= mCapacity / 2) {
+	if(mSize >= mCapacity / 4) {
 		return;
 	}
-	if(mCapacity <= S_GRANULARITY) {
+	if(mCapacity <= Config::GRANULARITY_DEFAULT) {
 		return;
 	}
 	mCapacity /= 2;

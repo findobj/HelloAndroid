@@ -31,7 +31,9 @@ LOCAL_SRC_FILES := main.c \
 		findobj/foundation/HashMap.cpp \
 		findobj/foundation/Iterator.cpp \
 		findobj/foundation/Object.cpp \
+		findobj/foundation/String.cpp \
 		findobj/util/Config.cpp \
+		findobj/util/Const.cpp \
 		findobj/util/Log.cpp 
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
 		$(LOCAL_PATH)/findobj
