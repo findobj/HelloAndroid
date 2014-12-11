@@ -20,8 +20,8 @@ LOCAL_MODULE    := native
 LOCAL_SRC_FILES := main.c \
 		CppMix.cpp \
 		findobj/component/AppDelegate.cpp \
-		findobj/foundation/AStar.cpp \
-		findobj/foundation/Tile.cpp \
+		findobj/train/AStar.cpp \
+		findobj/train/Tile.cpp \
 		findobj/foundation/Node.cpp \
 		findobj/foundation/Point.cpp \
 		findobj/foundation/Rect.cpp \
