@@ -1,6 +1,6 @@
 #include "Log.h"
 #include "Config.h"
-#include "Platform.h"
+#include "findobj/Platform.h"
 
 #ifdef PLATFORM_ANDROID
 #include "findobj/platform/android/ALog.h"

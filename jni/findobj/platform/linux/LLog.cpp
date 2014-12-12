@@ -6,7 +6,7 @@ void LLog::i(const char *tag, const char *format, va_list ap)
 {
 	char* result = LLog::stringFormat(format, ap);
 	printf("%s: %s\n", tag, result);
-	free(result);
+	delete result;
 }
 
 char* LLog::stringFormat(const char *format, va_list ap)
@@ -20,10 +20,10 @@ char* LLog::stringFormat(const char *format, va_list ap)
 				case 'd': {
 					int arg = va_arg(ap, int);
 					int lenTmp = strlen(result) + sizeof(int) * 8;
-					char *resultLeft = (char*)malloc(lenTmp + 1);
+					char *resultLeft = new char[lenTmp + 1];
 					memset(resultLeft, 0, lenTmp + 1);
 					memcpy(resultLeft, result, i + 2);
-					char *resultTmp = (char*)malloc(lenTmp + 1);
+					char *resultTmp = new char[lenTmp + 1];
 					memset(resultTmp, 0, lenTmp);
 					sprintf(resultTmp, resultLeft, arg);
 					int tmpI = strlen(resultTmp) - 1;
@@ -39,10 +39,10 @@ char* LLog::stringFormat(const char *format, va_list ap)
 				case 's': {
 					char *arg = va_arg(ap, char*);
 					int lenTmp = strlen(result) + strlen(arg);
-					char *resultLeft = (char*)malloc(lenTmp + 1);
+					char *resultLeft = new char[lenTmp + 1];
 					memset(resultLeft, 0, lenTmp + 1);
 					memcpy(resultLeft, result, i + 2);
-					char *resultTmp = (char*)malloc(lenTmp + 1);
+					char *resultTmp = new char[lenTmp + 1];
 					memset(resultTmp, 0, lenTmp);
 					sprintf(resultTmp, resultLeft, arg);
 					int tmpI = strlen(resultTmp) - 1;
