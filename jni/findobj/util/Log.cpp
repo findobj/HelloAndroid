@@ -1,17 +1,39 @@
 #include "Log.h"
 #include "Config.h"
+#include "findobj/Platform.h"
+
+#ifdef PLATFORM_ANDROID
+#include "findobj/platform/android/ALog.h"
+#endif
+#ifdef PLATFORM_LINUX
+#include "findobj/platform/linux/LLog.h"
+#endif
+
+const int Log::PRIO_INFO = 1;
 
 void Log::i(const char *tag, const char *format, ...)
 {
 	va_list argp;
 	va_start(argp, format);
-	log(ANDROID_LOG_INFO, tag, format, argp);
+	log(PRIO_INFO, tag, format, argp);
 	va_end(argp);
 }
 
 void Log::log(int prio, const char *tag, const char *format, va_list ap)
 {
 	if(Config::DEBUG) {
-		__android_log_vprint(prio, tag, format, ap);
+
+#ifdef PLATFORM_ANDROID
+		if(PRIO_INFO == prio) {
+			ALog::i(tag, format, ap);
+		}
+#endif
+
+#ifdef PLATFORM_LINUX
+		if(PRIO_INFO == prio) {
+			LLog::i(tag, format, ap);
+		}
+#endif
+
 	}
 }

@@ -26,7 +26,6 @@ private:
 	Object **mArray;
 	int mSize;
 	int mCapacity;
-	static const int S_GRANULARITY;
 };
 
 #endif

@@ -1,7 +1,7 @@
 #ifndef __TILE_H__
 #define __TILE_H__
 
-#include "Object.h"
+#include "findobj/Foundation.h"
 
 class Tile : public Object
 {

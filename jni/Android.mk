@@ -19,9 +19,9 @@ include $(CLEAR_VARS)
 LOCAL_MODULE    := native
 LOCAL_SRC_FILES := main.c \
 		CppMix.cpp \
+		findobj/train/AStar.cpp \
+		findobj/train/Tile.cpp \
 		findobj/component/AppDelegate.cpp \
-		findobj/foundation/AStar.cpp \
-		findobj/foundation/Tile.cpp \
 		findobj/foundation/Node.cpp \
 		findobj/foundation/Point.cpp \
 		findobj/foundation/Rect.cpp \
@@ -31,8 +31,11 @@ LOCAL_SRC_FILES := main.c \
 		findobj/foundation/HashMap.cpp \
 		findobj/foundation/Iterator.cpp \
 		findobj/foundation/Object.cpp \
+		findobj/foundation/String.cpp \
 		findobj/util/Config.cpp \
-		findobj/util/Log.cpp 
+		findobj/util/Const.cpp \
+		findobj/util/Log.cpp \
+		findobj/platform/android/ALog.cpp
 LOCAL_C_INCLUDES := $(LOCAL_PATH) \
 		$(LOCAL_PATH)/findobj
 LOCAL_LDLIBS    := -llog -landroid -lEGL -lGLESv1_CM

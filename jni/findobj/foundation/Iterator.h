@@ -19,7 +19,6 @@ private:
 	int mSize;
 	int mIndex;
 	int mCapacity;
-	static const int S_GRANULARITY;
 };
 
 #endif

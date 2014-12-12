@@ -1,3 +1,4 @@
 #include "Config.h"
 
-bool Config::DEBUG = true;
+const bool Config::DEBUG = true;
+const int Config::GRANULARITY_DEFAULT = 16;

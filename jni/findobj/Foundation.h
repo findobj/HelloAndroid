@@ -5,6 +5,7 @@
 #include <string.h>
 
 #include "./foundation/Object.h"
+#include "./foundation/String.h"
 
 #include "./foundation/Point.h"
 #include "./foundation/Rect.h"

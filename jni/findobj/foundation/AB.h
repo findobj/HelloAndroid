@@ -7,10 +7,11 @@ class AB : public Object
 {
 public:
 	AB();
-	AB(void *a, void *b);
+	AB(Object *a, Object *b);
+	virtual ~AB();
 public:
-	void *a;
-	void *b;
+	Object *a;
+	Object *b;
 };
 
 #endif
