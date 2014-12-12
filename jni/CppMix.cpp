@@ -1,14 +1,14 @@
 #include "CppMix.h"
-#include "findobj/component/AppDelegate.h"
+#include "findobj/train/AStar.h"
 
 /**
  * cpp mix entry
  */
 int main_mix(void *data)
 {
-	AppDelegate *app = new AppDelegate();
-	int ret = app->main();
-	delete app;
+	AStar *astar = new AStar();
+	astar->test();
+	delete astar;
 
-	return ret;
+	return 0;
 }
