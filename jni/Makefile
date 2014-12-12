@@ -30,7 +30,7 @@ INCLUDES = -I$(CURR_PATH)
 LIBS = -lpthread \
 	-ldl
 
-TARGET =	train
+TARGET =	HelloTrain
 
 $(TARGET): $(CXXSRCS) $(CSRCS)
 #	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
