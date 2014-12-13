@@ -115,6 +115,11 @@ bool List::isEmpty()
 	return (0 == mSize);
 }
 
+void List::sort(Comparator *comparator)
+{
+
+}
+
 void List::increase()
 {
 	if(mSize <= mCapacity * 3 / 4) {

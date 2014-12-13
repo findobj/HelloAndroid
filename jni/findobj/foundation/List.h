@@ -2,6 +2,7 @@
 #define __LIST_H__
 
 #include "Object.h"
+#include "Comparator.h"
 
 class List : public Object
 {
@@ -19,6 +20,7 @@ public:
 	virtual bool contains(Object *obj);
 	virtual int size();
 	virtual bool isEmpty();
+	virtual void sort(Comparator *comparator);
 protected:
 	virtual void increase();
 	virtual void decrease();
