@@ -58,6 +58,7 @@ void List::remove(int index)
 			memset(tmp, 0, sizeof(Object*) * remain);
 			memcpy(tmp, mArray + index + 1, sizeof(Object*) * remain);
 			memcpy(mArray + index, tmp, sizeof(Object*) * remain);
+			delete tmp;
 		}
 		mSize--;
 		delete target;
