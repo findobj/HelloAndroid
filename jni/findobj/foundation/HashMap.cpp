@@ -1,6 +1,6 @@
 #include "HashMap.h"
 #include "Constant.h"
-#include "ArrayList.h"
+#include "LinkedList.h"
 #include "AB.h"
 #include "Iterator.h"
 #include "findobj/Util.h"
@@ -9,14 +9,14 @@ HashMap::HashMap()
 {
 	mSize = 0;
 	mBucketSize = DEFAULT_SIZE_GRANULARITY;
-	mBuckets = new ArrayList*[mBucketSize];
-	memset(mBuckets, 0, sizeof(ArrayList*) * mBucketSize);
+	mBuckets = new LinkedList*[mBucketSize];
+	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
 }
 
 HashMap::~HashMap()
 {
 	for(int i = 0; i < mBucketSize; i++) {
-		ArrayList* bucket = mBuckets[i];
+		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			delete bucket;
 		}
@@ -32,17 +32,18 @@ void HashMap::put(Object *key, Object *value)
 	}
 	increase();
 	int index = hashCode(key);
-	ArrayList* bucket = mBuckets[index];
+	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
 			if(key->equals(ab->a)) {
 				bucket->remove(i);
+				mSize--;
 				break;
 			}
 		}
 	} else {
-		bucket = new ArrayList();
+		bucket = new LinkedList();
 		mBuckets[index] = bucket;
 	}
 	bucket->add(new AB(key, value));
@@ -55,7 +56,7 @@ Object* HashMap::get(Object *key)
 		return NULL;
 	}
 	int index = hashCode(key);
-	ArrayList* bucket = mBuckets[index];
+	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
@@ -73,7 +74,7 @@ void HashMap::remove(Object *key)
 		return ;
 	}
 	int index = hashCode(key);
-	ArrayList* bucket = mBuckets[index];
+	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
@@ -92,7 +93,7 @@ bool HashMap::containsKey(Object *key)
 		return false;
 	}
 	int index = hashCode(key);
-	ArrayList* bucket = mBuckets[index];
+	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			AB *ab = (AB*)bucket->get(i);
@@ -117,7 +118,7 @@ int HashMap::size()
 void HashMap::clear()
 {
 	for(int i = 0; i < mSize; i++) {
-		ArrayList* bucket = mBuckets[i];
+		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			delete bucket;
 		}
@@ -125,8 +126,8 @@ void HashMap::clear()
 	delete mBuckets;
 	mSize = 0;
 	mBucketSize = DEFAULT_SIZE_GRANULARITY;
-	mBuckets = new ArrayList*[mBucketSize];
-	memset(mBuckets, 0, sizeof(ArrayList*) * mBucketSize);
+	mBuckets = new LinkedList*[mBucketSize];
+	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
 }
 
 void HashMap::increase()
@@ -136,7 +137,7 @@ void HashMap::increase()
 	}
 	Iterator iter;
 	for(int i = 0; i < mBucketSize; i++) {
-		ArrayList* bucket = mBuckets[i];
+		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			for(int j = 0; j < bucket->size(); j++) {
 				AB *ab = (AB*)bucket->get(j);
@@ -151,14 +152,14 @@ void HashMap::increase()
 	delete mBuckets;
 
 	mBucketSize *= 2;
-	mBuckets = new ArrayList*[mBucketSize];
-	memset(mBuckets, 0, sizeof(ArrayList*) * mBucketSize);
+	mBuckets = new LinkedList*[mBucketSize];
+	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
 	while(iter.hasNext()) {
 		AB *ab = (AB*)iter.next();
 		int index = hashCode(ab->a);
-		ArrayList* bucket = mBuckets[index];
+		LinkedList* bucket = mBuckets[index];
 		if(bucket == NULL) {
-			bucket = new ArrayList();
+			bucket = new LinkedList();
 			mBuckets[index] = bucket;
 		}
 		bucket->add(ab);
@@ -175,7 +176,7 @@ void HashMap::decrease()
 	}
 	Iterator iter;
 	for(int i = 0; i < mBucketSize; i++) {
-		ArrayList* bucket = mBuckets[i];
+		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			for(int j = 0; j < bucket->size(); j++) {
 				AB *ab = (AB*)bucket->get(j);
@@ -190,14 +191,14 @@ void HashMap::decrease()
 	delete mBuckets;
 
 	mBucketSize /= 2;
-	mBuckets = new ArrayList*[mBucketSize];
-	memset(mBuckets, 0, sizeof(ArrayList*) * mBucketSize);
+	mBuckets = new LinkedList*[mBucketSize];
+	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
 	while(iter.hasNext()) {
 		AB *ab = (AB*)iter.next();
 		int index = hashCode(ab->a);
-		ArrayList* bucket = mBuckets[index];
+		LinkedList* bucket = mBuckets[index];
 		if(bucket == NULL) {
-			bucket = new ArrayList();
+			bucket = new LinkedList();
 			mBuckets[index] = bucket;
 		}
 		bucket->add(ab);

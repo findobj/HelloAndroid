@@ -22,9 +22,6 @@ BitTreeNode::~BitTreeNode()
 
 void BitTreeNode::setData(Object *data)
 {
-	if(mData != NULL) {
-		delete mData;
-	}
 	mData = data;
 }
 
@@ -35,9 +32,6 @@ Object* BitTreeNode::getData()
 
 void BitTreeNode::setLeft(BitTreeNode *left)
 {
-	if(mLeft != NULL) {
-		delete mLeft;
-	}
 	mLeft = left;
 }
 
@@ -48,9 +42,6 @@ BitTreeNode* BitTreeNode::getLeft()
 
 void BitTreeNode::setRight(BitTreeNode *right)
 {
-	if(mRight != NULL) {
-		delete mRight;
-	}
 	mRight = right;
 }
 

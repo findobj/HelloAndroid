@@ -18,9 +18,6 @@ LinkedNode::~LinkedNode()
 
 void LinkedNode::setData(Object *data)
 {
-	if(mData != NULL) {
-		delete mData;
-	}
 	mData = data;
 }
 
@@ -31,9 +28,6 @@ Object* LinkedNode::getData()
 
 void LinkedNode::setNext(LinkedNode *next)
 {
-	if(mNext != NULL) {
-		delete mNext;
-	}
 	mNext = next;
 }
 

@@ -3,7 +3,7 @@
 
 #include "Object.h"
 
-class ArrayList;
+class LinkedList;
 
 class HashMap : public Object
 {
@@ -23,7 +23,7 @@ protected:
 	virtual void decrease();
 	virtual int hashCode(Object *key);
 private:
-	ArrayList **mBuckets;
+	LinkedList **mBuckets;
 	int mBucketSize;
 	int mSize;
 };

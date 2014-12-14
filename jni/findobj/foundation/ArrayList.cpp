@@ -51,7 +51,7 @@ Object* ArrayList::get(int index)
 void ArrayList::remove(int index)
 {
 	if(index >= 0 && index < mSize) {
-		Object* target = mArray[index];
+		Object *target = mArray[index];
 		if(index < mSize - 1) {
 			int remain = mSize - 1 - index;
 			Object** tmp = new Object*[remain];
@@ -62,20 +62,6 @@ void ArrayList::remove(int index)
 		}
 		mSize--;
 		delete target;
-		target = NULL;
-	}
-}
-
-void ArrayList::remove(Object *obj)
-{
-	if(obj == NULL) {
-		return ;
-	}
-	for(int i = 0; i < mSize; i++) {
-		if(obj == mArray[i]) {
-			remove(i);
-			return ;
-		}
 	}
 }
 
@@ -98,7 +84,7 @@ bool ArrayList::contains(Object *obj)
 	}
 
 	for(int i = 0; i < mSize; i++) {
-		if(obj->equals(mArray[i])) {
+		if(obj == mArray[i]) {
 			return true;
 		}
 	}

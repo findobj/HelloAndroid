@@ -8,14 +8,12 @@ class ArrayList : public Object
 {
 public:
 	ArrayList();
-	ArrayList(int granularity);
 	virtual ~ArrayList();
 public:
 	virtual void add(Object *obj);
 	virtual void addAll(ArrayList *list);
 	virtual Object* get(int index);
 	virtual void remove(int index);
-	virtual void remove(Object *obj);
 	virtual void clear();
 	virtual bool contains(Object *obj);
 	virtual int size();
