@@ -98,7 +98,7 @@ bool ArrayList::contains(Object *obj)
 	}
 
 	for(int i = 0; i < mSize; i++) {
-		if(obj == mArray[i]) {
+		if(obj->equals(mArray[i])) {
 			return true;
 		}
 	}
