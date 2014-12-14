@@ -5,4 +5,6 @@
 
 #define DEFAULT_SIZE_GRANULARITY 16
 
+#define DEF_CLASS_STRING "string"
+
 #endif

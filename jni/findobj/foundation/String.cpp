@@ -1,14 +1,13 @@
 #include "String.h"
+#include "Constant.h"
 
-const char* String::S_KLASS = "String";
-
-String::String() : Object((char*)S_KLASS)
+String::String()
 {
 	mData = NULL;
 	mLength = 0;
 }
 
-String::String(char *data) : Object((char*)S_KLASS)
+String::String(const char *data)
 {
 	mData = NULL;
 	mLength = 0;
@@ -51,7 +50,7 @@ char* String::toCharArray()
 bool String::equals(Object *obj)
 {
 	if(obj != NULL &&
-			(0 == (strcmp(S_KLASS, obj->klass())))) {
+			obj->instanceOf(DEF_CLASS_STRING)) {
 		String *str = (String*)obj;
 		if(mData != NULL &&
 				str->mData != NULL &&
@@ -85,3 +84,7 @@ int String::hashCode()
 	return h;
 }
 
+const char* String::whoAmI()
+{
+	return DEF_CLASS_STRING;
+}

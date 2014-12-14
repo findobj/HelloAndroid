@@ -34,7 +34,7 @@ TARGET =	HelloTrain
 
 $(TARGET): $(CXXSRCS) $(CSRCS)
 #	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
-	$(CXX) $(CFLAGS) -g -o $(TARGET) $(CXXSRCS) $(CSRCS) $(INCLUDES) $(LIBS)
+	$(CXX) $(CFLAGS) -o $(TARGET) $(CXXSRCS) $(CSRCS) $(INCLUDES) $(LIBS)
 
 all:	$(TARGET)
 

@@ -1,5 +1,4 @@
 #include "HashMap.h"
-#include <string.h>
 #include "Constant.h"
 #include "ArrayList.h"
 #include "AB.h"

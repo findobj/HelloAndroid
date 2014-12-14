@@ -8,14 +8,15 @@ class Object
 {
 public:
 	Object();
-	Object(char *klass);
 	virtual ~Object();
 public:
 	virtual bool equals(Object *obj);
 	virtual int hashCode();
-	virtual char* klass();
+public:
+	virtual const char* whoAmI();
+	virtual bool instanceOf(const char* className);
 private:
-	char *mKlass;
+	const char *mClassName;
 };
 
 #endif

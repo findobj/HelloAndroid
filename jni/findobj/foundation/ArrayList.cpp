@@ -1,5 +1,4 @@
 #include "ArrayList.h"
-#include <string.h>
 #include "Constant.h"
 #include "findobj/Util.h"
 

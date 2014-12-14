@@ -7,7 +7,7 @@ class String : public Object
 {
 public:
 	String();
-	String(char *data);
+	String(const char *data);
 	virtual ~String();
 public:
 	virtual int length();
@@ -16,6 +16,7 @@ public:
 public:
 	virtual bool equals(Object *obj);
 	virtual int hashCode();
+	virtual const char* whoAmI();
 private:
 	char *mData;
 	int mLength;

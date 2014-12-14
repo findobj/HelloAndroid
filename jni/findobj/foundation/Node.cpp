@@ -1,5 +1,4 @@
 #include "Node.h"
-#include <stdio.h>
 
 Node::Node()
 {
@@ -12,15 +11,12 @@ Node::~Node()
 {
 	if(mData != NULL) {
 		delete mData;
-		mData = NULL;
 	}
 	if(mLeft != NULL) {
 		delete mLeft;
-		mLeft = NULL;
 	}
 	if(mRight != NULL) {
 		delete mRight;
-		mRight = NULL;
 	}
 }
 
@@ -28,7 +24,6 @@ void Node::setData(Object *data)
 {
 	if(mData != NULL) {
 		delete mData;
-		mData = NULL;
 	}
 	mData = data;
 }
@@ -40,6 +35,9 @@ Object* Node::getData()
 
 void Node::setLeft(Node *left)
 {
+	if(mLeft != NULL) {
+		delete mLeft;
+	}
 	mLeft = left;
 }
 
@@ -50,6 +48,9 @@ Node* Node::getLeft()
 
 void Node::setRight(Node *right)
 {
+	if(mRight != NULL) {
+		delete mRight;
+	}
 	mRight = right;
 }
 

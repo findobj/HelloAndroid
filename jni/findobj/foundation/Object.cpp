@@ -2,12 +2,7 @@
 
 Object::Object()
 {
-	mKlass = NULL;
-}
-
-Object::Object(char *klass)
-{
-	mKlass = klass;
+	mClassName = whoAmI();
 }
 
 Object::~Object()
@@ -38,7 +33,17 @@ int Object::hashCode()
 	return h;
 }
 
-char* Object::klass()
+const char* Object::whoAmI()
 {
-	return mKlass;
+	return NULL;
 }
+
+bool Object::instanceOf(const char* className)
+{
+	if(mClassName != NULL &&
+			className != NULL) {
+		return (0 == strcmp(mClassName, className));
+	}
+	return true;
+}
+

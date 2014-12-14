@@ -1,5 +1,4 @@
 #include "Iterator.h"
-#include <string.h>
 #include "ArrayList.h"
 
 Iterator::Iterator()
