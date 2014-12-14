@@ -12,7 +12,7 @@ public:
 	void setData(Object *data);
 	Object* getData();
 
-	void setNext(Node *next);
+	void setNext(LinkedNode *next);
 	LinkedNode* getNext();
 private:
 	Object *mData;

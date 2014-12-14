@@ -29,7 +29,7 @@ Object* LinkedNode::getData()
 	return mData;
 }
 
-void LinkedNode::setNext(Node *next)
+void LinkedNode::setNext(LinkedNode *next)
 {
 	if(mNext != NULL) {
 		delete mNext;

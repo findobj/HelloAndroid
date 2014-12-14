@@ -1,13 +1,13 @@
-#include "Node.h"
+#include "BitTreeNode.h"
 
-Node::Node()
+BitTreeNode::BitTreeNode()
 {
 	mData = NULL;
 	mLeft = NULL;
 	mRight = NULL;
 }
 
-Node::~Node()
+BitTreeNode::~BitTreeNode()
 {
 	if(mData != NULL) {
 		delete mData;
@@ -20,7 +20,7 @@ Node::~Node()
 	}
 }
 
-void Node::setData(Object *data)
+void BitTreeNode::setData(Object *data)
 {
 	if(mData != NULL) {
 		delete mData;
@@ -28,12 +28,12 @@ void Node::setData(Object *data)
 	mData = data;
 }
 
-Object* Node::getData()
+Object* BitTreeNode::getData()
 {
 	return mData;
 }
 
-void Node::setLeft(Node *left)
+void BitTreeNode::setLeft(BitTreeNode *left)
 {
 	if(mLeft != NULL) {
 		delete mLeft;
@@ -41,12 +41,12 @@ void Node::setLeft(Node *left)
 	mLeft = left;
 }
 
-Node* Node::getLeft()
+BitTreeNode* BitTreeNode::getLeft()
 {
 	return mLeft;
 }
 
-void Node::setRight(Node *right)
+void BitTreeNode::setRight(BitTreeNode *right)
 {
 	if(mRight != NULL) {
 		delete mRight;
@@ -54,7 +54,7 @@ void Node::setRight(Node *right)
 	mRight = right;
 }
 
-Node* Node::getRight()
+BitTreeNode* BitTreeNode::getRight()
 {
 	return mRight;
 }

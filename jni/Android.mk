@@ -22,7 +22,8 @@ LOCAL_SRC_FILES := main.c \
 		findobj/train/AStar.cpp \
 		findobj/train/Tile.cpp \
 		findobj/component/AppDelegate.cpp \
-		findobj/foundation/Node.cpp \
+		findobj/foundation/BitTreeNode.cpp \
+		findobj/foundation/LinkedNode.cpp \
 		findobj/foundation/Point.cpp \
 		findobj/foundation/Rect.cpp \
 		findobj/foundation/Size.cpp \
