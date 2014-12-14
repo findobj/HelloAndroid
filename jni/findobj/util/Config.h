@@ -5,7 +5,6 @@ class Config
 {
 public:
 	static const bool DEBUG;
-	static const int GRANULARITY_DEFAULT;
 };
 
 #endif

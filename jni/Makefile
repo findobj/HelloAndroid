@@ -11,7 +11,7 @@ CXXSRCS = CppMix.cpp \
 		findobj/foundation/Rect.cpp \
 		findobj/foundation/Size.cpp \
 		findobj/foundation/AB.cpp \
-		findobj/foundation/List.cpp \
+		findobj/foundation/ArrayList.cpp \
 		findobj/foundation/HashMap.cpp \
 		findobj/foundation/Iterator.cpp \
 		findobj/foundation/Object.cpp \
@@ -34,7 +34,7 @@ TARGET =	HelloTrain
 
 $(TARGET): $(CXXSRCS) $(CSRCS)
 #	$(CXX) -o $(TARGET) $(OBJS) $(LIBS)
-	$(CXX) $(CFLAGS) -o $(TARGET) $(CXXSRCS) $(CSRCS) $(INCLUDES) $(LIBS)
+	$(CXX) $(CFLAGS) -g -o $(TARGET) $(CXXSRCS) $(CSRCS) $(INCLUDES) $(LIBS)
 
 all:	$(TARGET)
 

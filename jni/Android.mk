@@ -27,7 +27,7 @@ LOCAL_SRC_FILES := main.c \
 		findobj/foundation/Rect.cpp \
 		findobj/foundation/Size.cpp \
 		findobj/foundation/AB.cpp \
-		findobj/foundation/List.cpp \
+		findobj/foundation/ArrayList.cpp \
 		findobj/foundation/HashMap.cpp \
 		findobj/foundation/Iterator.cpp \
 		findobj/foundation/Object.cpp \

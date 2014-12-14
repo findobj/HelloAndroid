@@ -3,6 +3,8 @@
 
 #include "Object.h"
 
+class ArrayList;
+
 class Iterator : public Object
 {
 public:
@@ -12,13 +14,9 @@ public:
 	virtual bool hasNext();
 	virtual Object* next();
 	virtual void put(Object *obj);
-protected:
-	virtual void increase();
 private:
-	Object **mArray;
-	int mSize;
+	ArrayList *list;
 	int mIndex;
-	int mCapacity;
 };
 
 #endif

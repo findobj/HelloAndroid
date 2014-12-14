@@ -1,18 +1,18 @@
-#ifndef __LIST_H__
-#define __LIST_H__
+#ifndef __ARRAYLIST_H__
+#define __ARRAYLIST_H__
 
 #include "Object.h"
 #include "Comparator.h"
 
-class List : public Object
+class ArrayList : public Object
 {
 public:
-	List();
-	List(int granularity);
-	virtual ~List();
+	ArrayList();
+	ArrayList(int granularity);
+	virtual ~ArrayList();
 public:
 	virtual void add(Object *obj);
-	virtual void addAll(List *list);
+	virtual void addAll(ArrayList *list);
 	virtual Object* get(int index);
 	virtual void remove(int index);
 	virtual void remove(Object *obj);

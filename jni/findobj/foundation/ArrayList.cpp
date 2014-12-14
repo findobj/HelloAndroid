@@ -1,16 +1,17 @@
-#include "List.h"
+#include "ArrayList.h"
 #include <string.h>
+#include "Constant.h"
 #include "findobj/Util.h"
 
-List::List()
+ArrayList::ArrayList()
 {
 	mSize = 0;
-	mCapacity = Config::GRANULARITY_DEFAULT;
+	mCapacity = DEFAULT_SIZE_GRANULARITY;
 	mArray = new Object*[mCapacity];
 	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
 
-List::~List()
+ArrayList::~ArrayList()
 {
 	for(int i = 0; i < mSize; i++) {
 		delete mArray[i];
@@ -18,7 +19,7 @@ List::~List()
 	delete mArray;
 }
 
-void List::add(Object *obj)
+void ArrayList::add(Object *obj)
 {
 	if(obj == NULL ||
 			contains(obj)) {
@@ -28,7 +29,7 @@ void List::add(Object *obj)
 	mArray[mSize++] = obj;
 }
 
-void List::addAll(List *list)
+void ArrayList::addAll(ArrayList *list)
 {
 	if(list == NULL ||
 			this == list) {
@@ -40,7 +41,7 @@ void List::addAll(List *list)
 	}
 }
 
-Object* List::get(int index)
+Object* ArrayList::get(int index)
 {
 	if(index >= 0 && index < mSize) {
 		return mArray[index];
@@ -48,7 +49,7 @@ Object* List::get(int index)
 	return NULL;
 }
 
-void List::remove(int index)
+void ArrayList::remove(int index)
 {
 	if(index >= 0 && index < mSize) {
 		Object* target = mArray[index];
@@ -66,7 +67,7 @@ void List::remove(int index)
 	}
 }
 
-void List::remove(Object *obj)
+void ArrayList::remove(Object *obj)
 {
 	if(obj == NULL) {
 		return ;
@@ -79,19 +80,19 @@ void List::remove(Object *obj)
 	}
 }
 
-void List::clear()
+void ArrayList::clear()
 {
 	for(int i = 0; i < mSize; i++) {
 		delete mArray[i];
 	}
 	delete mArray;
 	mSize = 0;
-	mCapacity = Config::GRANULARITY_DEFAULT;
+	mCapacity = DEFAULT_SIZE_GRANULARITY;
 	mArray = new Object*[mCapacity];
 	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
 
-bool List::contains(Object *obj)
+bool ArrayList::contains(Object *obj)
 {
 	if(obj == NULL) {
 		return false;
@@ -105,22 +106,22 @@ bool List::contains(Object *obj)
 	return false;
 }
 
-int List::size()
+int ArrayList::size()
 {
 	return mSize;
 }
 
-bool List::isEmpty()
+bool ArrayList::isEmpty()
 {
 	return (0 == mSize);
 }
 
-void List::sort(Comparator *comparator)
+void ArrayList::sort(Comparator *comparator)
 {
 
 }
 
-void List::increase()
+void ArrayList::increase()
 {
 	if(mSize <= mCapacity * 3 / 4) {
 		return ;
@@ -133,12 +134,12 @@ void List::increase()
 	mArray = tmp;
 }
 
-void List::decrease()
+void ArrayList::decrease()
 {
 	if(mSize >= mCapacity / 4) {
 		return;
 	}
-	if(mCapacity <= Config::GRANULARITY_DEFAULT) {
+	if(mCapacity <= DEFAULT_SIZE_GRANULARITY) {
 		return;
 	}
 	mCapacity /= 2;
