@@ -2,6 +2,8 @@ bin/
 Debug/
 gen/
 obj/
+libs/
+assets/
 
 .DS_Store
 .cproject
