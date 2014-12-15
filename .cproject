@@ -24,12 +24,15 @@
 					<folderInfo id="cdt.managedbuild.config.gnu.cygwin.exe.debug.520397532." name="/" resourcePath="">
 						<toolChain id="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug.1440336106" name="Cygwin GCC" superClass="cdt.managedbuild.toolchain.gnu.cygwin.exe.debug">
 							<targetPlatform binaryParser="org.eclipse.cdt.core.MachO64;org.eclipse.cdt.core.GNU_ELF;org.eclipse.cdt.core.ELF" id="cdt.managedbuild.target.gnu.platform.cygwin.exe.debug.1279324920" name="Debug Platform" superClass="cdt.managedbuild.target.gnu.platform.cygwin.exe.debug"/>
-							<builder buildPath="${workspace_loc:/HelloAndroid/Debug}" command="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/ndk-build" id="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug.1382139588" keepEnvironmentInBuildfile="true" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug"/>
+							<builder buildPath="${workspace_loc:/HelloAndroid/Debug}" id="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug.1382139588" keepEnvironmentInBuildfile="true" managedBuildOn="false" name="Gnu Make Builder" superClass="cdt.managedbuild.target.gnu.builder.cygwin.exe.debug"/>
 							<tool id="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug.1098502004" name="GCC Assembler" superClass="cdt.managedbuild.tool.gnu.assembler.cygwin.exe.debug">
 								<option id="gnu.both.asm.option.include.paths.855642570" name="Include paths (-I)" superClass="gnu.both.asm.option.include.paths" valueType="includePath">
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/platforms/android-9/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/sources/android/native_app_glue"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.8/include"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\toolchains\arm-linux-androideabi-4.7\prebuilt\windows\lib\gcc\arm-linux-androideabi\4.7\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1516724757" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -41,6 +44,9 @@
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.8/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/platforms/android-9/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/sources/android/native_app_glue"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\toolchains\arm-linux-androideabi-4.7\prebuilt\windows\lib\gcc\arm-linux-androideabi\4.7\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.108216603" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
 							</tool>
@@ -51,6 +57,9 @@
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/platforms/android-9/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/sources/android/native_app_glue"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.8/include"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\platforms\android-9\arch-arm\usr\include&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\sources\android\native_app_glue&quot;"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\toolchains\arm-linux-androideabi-4.7\prebuilt\windows\lib\gcc\arm-linux-androideabi\4.7\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.606568863" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>
@@ -96,6 +105,7 @@
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/sources/android/native_app_glue"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/platforms/android-9/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.8/include"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\toolchains\arm-linux-androideabi-4.7\prebuilt\windows\lib\gcc\arm-linux-androideabi\4.7\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.assembler.input.1351028475" superClass="cdt.managedbuild.tool.gnu.assembler.input"/>
 							</tool>
@@ -111,6 +121,7 @@
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/sources/android/native_app_glue"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/platforms/android-9/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.8/include"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\toolchains\arm-linux-androideabi-4.7\prebuilt\windows\lib\gcc\arm-linux-androideabi\4.7\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1331067124" superClass="cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin"/>
 							</tool>
@@ -125,6 +136,7 @@
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/sources/android/native_app_glue"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/platforms/android-9/arch-arm/usr/include"/>
 									<listOptionValue builtIn="false" value="/Applications/adt-bundle-mac-x86_64/android-ndk-r10d/toolchains/arm-linux-androideabi-4.8/prebuilt/darwin-x86/lib/gcc/arm-linux-androideabi/4.8/include"/>
+									<listOptionValue builtIn="false" value="&quot;C:\Android\android-ndk-r8d\toolchains\arm-linux-androideabi-4.7\prebuilt\windows\lib\gcc\arm-linux-androideabi\4.7\include&quot;"/>
 								</option>
 								<inputType id="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1754018348" superClass="cdt.managedbuild.tool.gnu.c.compiler.input.cygwin"/>
 							</tool>
