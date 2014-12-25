@@ -1,7 +1,7 @@
 #include "HashMap.h"
 #include "Constant.h"
 #include "LinkedList.h"
-#include "AB.h"
+#include "Pair.h"
 #include "Iterator.h"
 #include "findobj/Util.h"
 
@@ -35,8 +35,8 @@ void HashMap::put(Object *key, Object *value)
 	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
-			AB *ab = (AB*)bucket->get(i);
-			if(key->equals(ab->a)) {
+			Pair *pair = (Pair*)bucket->get(i);
+			if(key->equals(pair->left)) {
 				bucket->remove(i);
 				mSize--;
 				break;
@@ -46,7 +46,7 @@ void HashMap::put(Object *key, Object *value)
 		bucket = new LinkedList();
 		mBuckets[index] = bucket;
 	}
-	bucket->add(new AB(key, value));
+	bucket->add(new Pair(key, value));
 	mSize++;
 }
 
@@ -59,9 +59,9 @@ Object* HashMap::get(Object *key)
 	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
-			AB *ab = (AB*)bucket->get(i);
-			if(key->equals(ab->a)) {
-				return ab->b;
+			Pair *pair = (Pair*)bucket->get(i);
+			if(key->equals(pair->left)) {
+				return pair->right;
 			}
 		}
 	}
@@ -77,8 +77,8 @@ void HashMap::remove(Object *key)
 	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
-			AB *ab = (AB*)bucket->get(i);
-			if(key->equals(ab->a)) {
+			Pair *pair = (Pair*)bucket->get(i);
+			if(key->equals(pair->left)) {
 				bucket->remove(i);
 				mSize--;
 				break;
@@ -96,8 +96,8 @@ bool HashMap::containsKey(Object *key)
 	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
-			AB *ab = (AB*)bucket->get(i);
-			if(key->equals(ab->a)) {
+			Pair *pair = (Pair*)bucket->get(i);
+			if(key->equals(pair->left)) {
 				return true;
 			}
 		}
@@ -140,10 +140,10 @@ void HashMap::increase()
 		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			for(int j = 0; j < bucket->size(); j++) {
-				AB *ab = (AB*)bucket->get(j);
-				AB *tmp = new AB(ab->a, ab->b);
-				ab->a = NULL;
-				ab->b = NULL;
+				Pair *pair = (Pair*)bucket->get(j);
+				Pair *tmp = new Pair(pair->left, pair->right);
+				pair->left = NULL;
+				pair->right = NULL;
 				iter.put(tmp);
 			}
 			delete bucket;
@@ -155,14 +155,14 @@ void HashMap::increase()
 	mBuckets = new LinkedList*[mBucketSize];
 	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
 	while(iter.hasNext()) {
-		AB *ab = (AB*)iter.next();
-		int index = hashCode(ab->a);
+		Pair *pair = (Pair*)iter.next();
+		int index = hashCode(pair->left);
 		LinkedList* bucket = mBuckets[index];
 		if(bucket == NULL) {
 			bucket = new LinkedList();
 			mBuckets[index] = bucket;
 		}
-		bucket->add(ab);
+		bucket->add(pair);
 	}
 }
 
@@ -179,10 +179,10 @@ void HashMap::decrease()
 		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			for(int j = 0; j < bucket->size(); j++) {
-				AB *ab = (AB*)bucket->get(j);
-				AB *tmp = new AB(ab->a, ab->b);
-				ab->a = NULL;
-				ab->b = NULL;
+				Pair *pair = (Pair*)bucket->get(j);
+				Pair *tmp = new Pair(pair->left, pair->right);
+				pair->left = NULL;
+				pair->right = NULL;
 				iter.put(tmp);
 			}
 			delete bucket;
@@ -194,14 +194,14 @@ void HashMap::decrease()
 	mBuckets = new LinkedList*[mBucketSize];
 	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
 	while(iter.hasNext()) {
-		AB *ab = (AB*)iter.next();
-		int index = hashCode(ab->a);
+		Pair *pair = (Pair*)iter.next();
+		int index = hashCode(pair->left);
 		LinkedList* bucket = mBuckets[index];
 		if(bucket == NULL) {
 			bucket = new LinkedList();
 			mBuckets[index] = bucket;
 		}
-		bucket->add(ab);
+		bucket->add(pair);
 	}
 }
 
