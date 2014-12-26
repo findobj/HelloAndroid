@@ -11,9 +11,11 @@ public:
 public:
 	void setData(Object *data);
 	Object* getData();
+	Object* removeData();
 
 	void setNext(LinkedNode *next);
 	LinkedNode* getNext();
+	LinkedNode* removeNext();
 private:
 	Object *mData;
 	LinkedNode *mNext;

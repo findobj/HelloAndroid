@@ -50,8 +50,9 @@ Object* LinkedList::get(int index)
 	return target;
 }
 
-void LinkedList::remove(int index)
+Object* LinkedList::remove(int index)
 {
+	Object *target = NULL;
 	if(index >= 0 && index < mSize) {
 		LinkedNode *node = NULL;
 		if(index == 0) {
@@ -66,11 +67,13 @@ void LinkedList::remove(int index)
 				index--;
 			}
 			prevNode->setNext(node->getNext());
-			node->setNext(NULL);
+			node->removeNext();
 		}
+		target = node->removeData();
 		delete node;
 		mSize--;
 	}
+	return target;
 }
 
 void LinkedList::clear()

@@ -48,8 +48,9 @@ Object* ArrayList::get(int index)
 	return NULL;
 }
 
-void ArrayList::remove(int index)
+Object* ArrayList::remove(int index)
 {
+	Object *target = NULL;
 	if(index >= 0 && index < mSize) {
 		Object *target = mArray[index];
 		if(index < mSize - 1) {
@@ -61,8 +62,17 @@ void ArrayList::remove(int index)
 			delete tmp;
 		}
 		mSize--;
-		delete target;
 	}
+	return target;
+}
+
+void ArrayList::removeAll()
+{
+	delete mArray;
+	mSize = 0;
+	mCapacity = DEFAULT_SIZE_GRANULARITY;
+	mArray = new Object*[mCapacity];
+	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
 
 void ArrayList::clear()

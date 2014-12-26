@@ -44,6 +44,6 @@ bool Object::instanceOf(const char* className)
 			className != NULL) {
 		return (0 == strcmp(mClassName, className));
 	}
-	return true;
+	return false;
 }
 

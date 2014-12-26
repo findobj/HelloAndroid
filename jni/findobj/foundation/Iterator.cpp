@@ -1,32 +1,26 @@
 #include "Iterator.h"
-#include "ArrayList.h"
 
-Iterator::Iterator()
+Iterator::Iterator(ArrayList *list)
 {
-	list = new ArrayList();
+	mSize = 0;
 	mIndex = 0;
+	mList = list;
+	if(mList != NULL) {
+		mSize = mList->size();
+	}
 }
 
 Iterator::~Iterator()
 {
-	delete list;
 }
 
 bool Iterator::hasNext()
 {
-	return (mIndex < list->size());
+	return (mIndex < mSize);
 }
 
 Object* Iterator::next()
 {
-	return list->get(mIndex++);
-}
-
-void Iterator::put(Object *obj)
-{
-	if(obj == NULL) {
-		return;
-	}
-	list->add(obj);
+	return mList->get(mIndex++);
 }
 

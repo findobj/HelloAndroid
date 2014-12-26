@@ -2,20 +2,19 @@
 #define __ITERATOR_H__
 
 #include "Object.h"
-
-class ArrayList;
+#include "ArrayList.h"
 
 class Iterator : public Object
 {
 public:
-	Iterator();
+	Iterator(ArrayList *list);
 	virtual ~Iterator();
 public:
 	virtual bool hasNext();
 	virtual Object* next();
-	virtual void put(Object *obj);
 private:
-	ArrayList *list;
+	ArrayList *mList;
+	int mSize;
 	int mIndex;
 };
 

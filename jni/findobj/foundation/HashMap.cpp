@@ -30,19 +30,13 @@ void HashMap::put(Object *key, Object *value)
 			value == NULL) {
 		return ;
 	}
+	if(containsKey(key)) {
+		return ;
+	}
 	increase();
 	int index = hashCode(key);
 	LinkedList* bucket = mBuckets[index];
-	if(bucket != NULL) {
-		for(int i = 0; i < bucket->size(); i++) {
-			Pair *pair = (Pair*)bucket->get(i);
-			if(key->equals(pair->left)) {
-				bucket->remove(i);
-				mSize--;
-				break;
-			}
-		}
-	} else {
+	if(bucket == NULL) {
 		bucket = new LinkedList();
 		mBuckets[index] = bucket;
 	}
@@ -60,31 +54,36 @@ Object* HashMap::get(Object *key)
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			Pair *pair = (Pair*)bucket->get(i);
-			if(key->equals(pair->left)) {
-				return pair->right;
+			if(key->equals(pair->getLeft())) {
+				return pair->getRight();
 			}
 		}
 	}
 	return NULL;
 }
 
-void HashMap::remove(Object *key)
+Object* HashMap::remove(Object *key)
 {
+	Object *target = NULL;
 	if(key == NULL) {
-		return ;
+		return target;
 	}
 	int index = hashCode(key);
 	LinkedList* bucket = mBuckets[index];
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			Pair *pair = (Pair*)bucket->get(i);
-			if(key->equals(pair->left)) {
+			if(key->equals(pair->getLeft())) {
 				bucket->remove(i);
+				target = pair->getRight();
+				pair->removeRight();
+				delete pair;
 				mSize--;
 				break;
 			}
 		}
 	}
+	return target;
 }
 
 bool HashMap::containsKey(Object *key)
@@ -97,7 +96,7 @@ bool HashMap::containsKey(Object *key)
 	if(bucket != NULL) {
 		for(int i = 0; i < bucket->size(); i++) {
 			Pair *pair = (Pair*)bucket->get(i);
-			if(key->equals(pair->left)) {
+			if(key->equals(pair->getLeft())) {
 				return true;
 			}
 		}
@@ -135,16 +134,14 @@ void HashMap::increase()
 	if(mSize <= mBucketSize * 3 / 4) {
 		return ;
 	}
-	Iterator iter;
+
+	ArrayList *list = new ArrayList();
 	for(int i = 0; i < mBucketSize; i++) {
 		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			for(int j = 0; j < bucket->size(); j++) {
 				Pair *pair = (Pair*)bucket->get(j);
-				Pair *tmp = new Pair(pair->left, pair->right);
-				pair->left = NULL;
-				pair->right = NULL;
-				iter.put(tmp);
+				list->add(pair);
 			}
 			delete bucket;
 		}
@@ -154,9 +151,10 @@ void HashMap::increase()
 	mBucketSize *= 2;
 	mBuckets = new LinkedList*[mBucketSize];
 	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
-	while(iter.hasNext()) {
-		Pair *pair = (Pair*)iter.next();
-		int index = hashCode(pair->left);
+	Iterator *iter = new Iterator(list);
+	while(iter->hasNext()) {
+		Pair *pair = (Pair*)iter->next();
+		int index = hashCode(pair->getLeft());
 		LinkedList* bucket = mBuckets[index];
 		if(bucket == NULL) {
 			bucket = new LinkedList();
@@ -164,6 +162,10 @@ void HashMap::increase()
 		}
 		bucket->add(pair);
 	}
+
+	list->removeAll();
+	delete list;
+	delete iter;
 }
 
 void HashMap::decrease()
@@ -174,16 +176,14 @@ void HashMap::decrease()
 	if(mBucketSize <= DEFAULT_SIZE_GRANULARITY) {
 		return ;
 	}
-	Iterator iter;
+
+	ArrayList *list = new ArrayList();
 	for(int i = 0; i < mBucketSize; i++) {
 		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
 			for(int j = 0; j < bucket->size(); j++) {
 				Pair *pair = (Pair*)bucket->get(j);
-				Pair *tmp = new Pair(pair->left, pair->right);
-				pair->left = NULL;
-				pair->right = NULL;
-				iter.put(tmp);
+				list->add(pair);
 			}
 			delete bucket;
 		}
@@ -193,9 +193,10 @@ void HashMap::decrease()
 	mBucketSize /= 2;
 	mBuckets = new LinkedList*[mBucketSize];
 	memset(mBuckets, 0, sizeof(LinkedList*) * mBucketSize);
-	while(iter.hasNext()) {
-		Pair *pair = (Pair*)iter.next();
-		int index = hashCode(pair->left);
+	Iterator *iter = new Iterator(list);
+	while(iter->hasNext()) {
+		Pair *pair = (Pair*)iter->next();
+		int index = hashCode(pair->getLeft());
 		LinkedList* bucket = mBuckets[index];
 		if(bucket == NULL) {
 			bucket = new LinkedList();
@@ -203,6 +204,10 @@ void HashMap::decrease()
 		}
 		bucket->add(pair);
 	}
+
+	list->removeAll();
+	delete list;
+	delete iter;
 }
 
 int HashMap::hashCode(Object *key)

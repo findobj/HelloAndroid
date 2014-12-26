@@ -11,12 +11,15 @@ public:
 public:
 	void setData(Object *data);
 	Object* getData();
+	Object* removeData();
 
 	void setLeft(BitTreeNode *left);
 	BitTreeNode* getLeft();
+	BitTreeNode* removeLeft();
 
 	void setRight(BitTreeNode *right);
 	BitTreeNode* getRight();
+	BitTreeNode* removeRight();
 private:
 	Object *mData;
 	BitTreeNode *mLeft;

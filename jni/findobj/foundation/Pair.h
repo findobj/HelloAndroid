@@ -10,8 +10,16 @@ public:
 	Pair(Object *left, Object *right);
 	virtual ~Pair();
 public:
-	Object *left;
-	Object *right;
+	void setLeft(Object *left);
+	Object* getLeft();
+	Object* removeLeft();
+
+	void setRight(Object *right);
+	Object* getRight();
+	Object* removeRight();
+private:
+	Object *mLeft;
+	Object *mRight;
 };
 
 #endif
