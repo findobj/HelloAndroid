@@ -6,12 +6,16 @@ Iterator::Iterator(ArrayList *list)
 	mIndex = 0;
 	mList = list;
 	if(mList != NULL) {
+		mList->retain();
 		mSize = mList->size();
 	}
 }
 
 Iterator::~Iterator()
 {
+	if(mList != NULL) {
+		mList->release();
+	}
 }
 
 bool Iterator::hasNext()

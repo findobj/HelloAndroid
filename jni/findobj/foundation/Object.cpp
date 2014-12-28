@@ -3,6 +3,7 @@
 Object::Object()
 {
 	mClassName = whoAmI();
+	retain();
 }
 
 Object::~Object()
@@ -31,6 +32,37 @@ int Object::hashCode()
 	}
 
 	return h;
+}
+
+void Object::retain()
+{
+	mUseCount++;
+}
+
+void Object::release()
+{
+	mUseCount--;
+	if(mUseCount <= 0) {
+		delete this;
+	}
+}
+
+void Object::assign(Object **pl, Object **pr)
+{
+	if(pl == NULL ||
+			pr == NULL) {
+		return;
+	}
+	if(*pl == *pr) {
+		return;
+	}
+	if(*pl != NULL) {
+		(*pl)->release();
+	}
+	*pl = *pr;
+	if(*pl != NULL) {
+		(*pl)->retain();
+	}
 }
 
 const char* Object::whoAmI()

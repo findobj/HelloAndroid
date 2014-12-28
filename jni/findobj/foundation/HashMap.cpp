@@ -18,7 +18,7 @@ HashMap::~HashMap()
 	for(int i = 0; i < mBucketSize; i++) {
 		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
-			delete bucket;
+			bucket->release();
 		}
 	}
 	delete mBuckets;
@@ -62,11 +62,10 @@ Object* HashMap::get(Object *key)
 	return NULL;
 }
 
-Object* HashMap::remove(Object *key)
+void HashMap::remove(Object *key)
 {
-	Object *target = NULL;
 	if(key == NULL) {
-		return target;
+		return ;
 	}
 	int index = hashCode(key);
 	LinkedList* bucket = mBuckets[index];
@@ -75,15 +74,11 @@ Object* HashMap::remove(Object *key)
 			Pair *pair = (Pair*)bucket->get(i);
 			if(key->equals(pair->getLeft())) {
 				bucket->remove(i);
-				target = pair->getRight();
-				pair->removeRight();
-				delete pair;
 				mSize--;
 				break;
 			}
 		}
 	}
-	return target;
 }
 
 bool HashMap::containsKey(Object *key)
@@ -119,7 +114,7 @@ void HashMap::clear()
 	for(int i = 0; i < mSize; i++) {
 		LinkedList* bucket = mBuckets[i];
 		if(bucket != NULL) {
-			delete bucket;
+			bucket->release();
 		}
 	}
 	delete mBuckets;
@@ -143,7 +138,7 @@ void HashMap::increase()
 				Pair *pair = (Pair*)bucket->get(j);
 				list->add(pair);
 			}
-			delete bucket;
+			bucket->release();
 		}
 	}
 	delete mBuckets;
@@ -163,9 +158,8 @@ void HashMap::increase()
 		bucket->add(pair);
 	}
 
-	list->removeAll();
-	delete list;
-	delete iter;
+	list->release();
+	iter->release();
 }
 
 void HashMap::decrease()
@@ -185,7 +179,7 @@ void HashMap::decrease()
 				Pair *pair = (Pair*)bucket->get(j);
 				list->add(pair);
 			}
-			delete bucket;
+			bucket->release();
 		}
 	}
 	delete mBuckets;
@@ -205,9 +199,8 @@ void HashMap::decrease()
 		bucket->add(pair);
 	}
 
-	list->removeAll();
-	delete list;
-	delete iter;
+	list->release();
+	iter->release();
 }
 
 int HashMap::hashCode(Object *key)

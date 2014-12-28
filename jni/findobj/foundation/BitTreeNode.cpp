@@ -10,22 +10,19 @@ BitTreeNode::BitTreeNode()
 BitTreeNode::~BitTreeNode()
 {
 	if(mData != NULL) {
-		delete mData;
+		mData->release();
 	}
 	if(mLeft != NULL) {
-		delete mLeft;
+		mLeft->release();
 	}
 	if(mRight != NULL) {
-		delete mRight;
+		mRight->release();
 	}
 }
 
 void BitTreeNode::setData(Object *data)
 {
-	if(mData != data) {
-		delete mData;
-	}
-	mData = data;
+	Object::assign(&mData, &data);
 }
 
 Object* BitTreeNode::getData()
@@ -42,10 +39,7 @@ Object* BitTreeNode::removeData()
 
 void BitTreeNode::setLeft(BitTreeNode *left)
 {
-	if(mLeft != left) {
-		delete mLeft;
-	}
-	mLeft = left;
+	Object::assign((Object**)(&mLeft), (Object**)(&left));
 }
 
 BitTreeNode* BitTreeNode::getLeft()
@@ -62,10 +56,7 @@ BitTreeNode* BitTreeNode::removeLeft()
 
 void BitTreeNode::setRight(BitTreeNode *right)
 {
-	if(mRight != right) {
-		delete mRight;
-	}
-	mRight = right;
+	Object::assign((Object**)(&mRight), (Object**)(&right));
 }
 
 BitTreeNode* BitTreeNode::getRight()

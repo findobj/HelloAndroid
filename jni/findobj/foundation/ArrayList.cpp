@@ -13,25 +13,24 @@ ArrayList::ArrayList()
 ArrayList::~ArrayList()
 {
 	for(int i = 0; i < mSize; i++) {
-		delete mArray[i];
+		mArray[i]->release();
 	}
 	delete mArray;
 }
 
 void ArrayList::add(Object *obj)
 {
-	if(obj == NULL ||
-			contains(obj)) {
-		return;
+	if(obj == NULL) {
+		return ;
 	}
 	increase();
+	obj->retain();
 	mArray[mSize++] = obj;
 }
 
 void ArrayList::addAll(ArrayList *list)
 {
-	if(list == NULL ||
-			this == list) {
+	if(list == NULL) {
 		return ;
 	}
 	int size = list->size();
@@ -48,11 +47,11 @@ Object* ArrayList::get(int index)
 	return NULL;
 }
 
-Object* ArrayList::remove(int index)
+void ArrayList::remove(int index)
 {
-	Object *target = NULL;
 	if(index >= 0 && index < mSize) {
 		Object *target = mArray[index];
+		target->release();
 		if(index < mSize - 1) {
 			int remain = mSize - 1 - index;
 			Object** tmp = new Object*[remain];
@@ -63,22 +62,12 @@ Object* ArrayList::remove(int index)
 		}
 		mSize--;
 	}
-	return target;
-}
-
-void ArrayList::removeAll()
-{
-	delete mArray;
-	mSize = 0;
-	mCapacity = DEFAULT_SIZE_GRANULARITY;
-	mArray = new Object*[mCapacity];
-	memset(mArray, 0, sizeof(Object*) * mCapacity);
 }
 
 void ArrayList::clear()
 {
 	for(int i = 0; i < mSize; i++) {
-		delete mArray[i];
+		mArray[i]->release();
 	}
 	delete mArray;
 	mSize = 0;
@@ -89,10 +78,6 @@ void ArrayList::clear()
 
 bool ArrayList::contains(Object *obj)
 {
-	if(obj == NULL) {
-		return false;
-	}
-
 	for(int i = 0; i < mSize; i++) {
 		if(obj == mArray[i]) {
 			return true;

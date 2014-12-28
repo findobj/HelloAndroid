@@ -12,14 +12,13 @@ LinkedList::LinkedList()
 LinkedList::~LinkedList()
 {
 	if(mHead != NULL) {
-		delete mHead;
+		mHead->release();
 	}
 }
 
 void LinkedList::add(Object *obj)
 {
-	if(obj == NULL ||
-			contains(obj)) {
+	if(obj == NULL) {
 		return;
 	}
 	LinkedNode *node = new LinkedNode();
@@ -31,7 +30,7 @@ void LinkedList::add(Object *obj)
 		while(last->getNext() != NULL) {
 			last = last->getNext();
 		}
-		last->setNext(last);
+		last->setNext(node);
 	}
 	mSize++;
 }
@@ -50,9 +49,8 @@ Object* LinkedList::get(int index)
 	return target;
 }
 
-Object* LinkedList::remove(int index)
+void LinkedList::remove(int index)
 {
-	Object *target = NULL;
 	if(index >= 0 && index < mSize) {
 		LinkedNode *node = NULL;
 		if(index == 0) {
@@ -69,17 +67,15 @@ Object* LinkedList::remove(int index)
 			prevNode->setNext(node->getNext());
 			node->removeNext();
 		}
-		target = node->removeData();
-		delete node;
+		node->release();
 		mSize--;
 	}
-	return target;
 }
 
 void LinkedList::clear()
 {
 	if(mHead != NULL) {
-		delete mHead;
+		mHead->release();
 	}
 	mHead = NULL;
 	mSize = 0;

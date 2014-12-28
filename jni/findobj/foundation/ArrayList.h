@@ -13,8 +13,7 @@ public:
 	virtual void add(Object *obj);
 	virtual void addAll(ArrayList *list);
 	virtual Object* get(int index);
-	virtual Object* remove(int index);
-	virtual void removeAll();
+	virtual void remove(int index);
 	virtual void clear();
 	virtual bool contains(Object *obj);
 	virtual int size();

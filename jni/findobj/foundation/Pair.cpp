@@ -2,30 +2,31 @@
 
 Pair::Pair()
 {
+	mLeft = NULL;
+	mRight = NULL;
 }
 
 Pair::Pair(Object *left, Object *right)
 {
-	mLeft = left;
-	mRight = right;
+	mLeft = NULL;
+	mRight = NULL;
+	setLeft(left);
+	setRight(right);
 }
 
 Pair::~Pair()
 {
 	if(mLeft != NULL) {
-		delete mLeft;
+		mLeft->release();
 	}
 	if(mRight != NULL) {
-		delete mRight;
+		mRight->release();
 	}
 }
 
 void Pair::setLeft(Object *left)
 {
-	if(mLeft != left) {
-		delete mLeft;
-	}
-	mLeft = left;
+	Object::assign((Object**)(&mLeft), (Object**)(&left));
 }
 
 Object* Pair::getLeft()
@@ -42,10 +43,7 @@ Object* Pair::removeLeft()
 
 void Pair::setRight(Object *right)
 {
-	if(mRight != right) {
-		delete mRight;
-	}
-	mRight = right;
+	Object::assign((Object**)(&mRight), (Object**)(&right));
 }
 
 Object* Pair::getRight()

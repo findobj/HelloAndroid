@@ -9,19 +9,16 @@ LinkedNode::LinkedNode()
 LinkedNode::~LinkedNode()
 {
 	if(mData != NULL) {
-		delete mData;
+		mData->release();
 	}
 	if(mNext != NULL) {
-		delete mNext;
+		mNext->release();
 	}
 }
 
 void LinkedNode::setData(Object *data)
 {
-	if(mData != data) {
-		delete mData;
-	}
-	mData = data;
+	Object::assign((Object**)(&mData), (Object**)(&data));
 }
 
 Object* LinkedNode::getData()
@@ -38,10 +35,7 @@ Object* LinkedNode::removeData()
 
 void LinkedNode::setNext(LinkedNode *next)
 {
-	if(mNext != next) {
-		delete mNext;
-	}
-	mNext = next;
+	Object::assign((Object**)(&mNext), (Object**)(&next));
 }
 
 LinkedNode* LinkedNode::getNext()

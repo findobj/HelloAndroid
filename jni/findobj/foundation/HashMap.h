@@ -13,7 +13,7 @@ public:
 public:
 	virtual void put(Object *key, Object *value);
 	virtual Object* get(Object *key);
-	virtual Object* remove(Object *key);
+	virtual void remove(Object *key);
 	virtual bool containsKey(Object *key);
 	virtual bool isEmpty();
 	virtual int size();
