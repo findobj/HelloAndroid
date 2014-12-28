@@ -75,6 +75,7 @@ void HashMap::remove(Object *key)
 			if(key->equals(pair->getLeft())) {
 				bucket->remove(i);
 				mSize--;
+				decrease();
 				break;
 			}
 		}

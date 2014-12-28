@@ -11,7 +11,6 @@ public:
 public:
 	void setData(Object *data);
 	Object* getData();
-	Object* removeData();
 
 	void setNext(LinkedNode *next);
 	LinkedNode* getNext();

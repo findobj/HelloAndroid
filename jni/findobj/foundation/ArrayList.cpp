@@ -61,6 +61,8 @@ void ArrayList::remove(int index)
 			delete tmp;
 		}
 		mSize--;
+
+		decrease();
 	}
 }
 
@@ -106,6 +108,7 @@ void ArrayList::increase()
 	if(mSize <= mCapacity * 3 / 4) {
 		return ;
 	}
+	Log::i("ArrayList", "increate %d-%d", mSize, mCapacity);
 	mCapacity *= 2;
 	Object **tmp = new Object*[mCapacity];
 	memset(tmp, 0, sizeof(Object*) * mCapacity);
@@ -122,6 +125,7 @@ void ArrayList::decrease()
 	if(mCapacity <= DEFAULT_SIZE_GRANULARITY) {
 		return;
 	}
+	Log::i("ArrayList", "decrease %d-%d", mSize, mCapacity);
 	mCapacity /= 2;
 	Object **tmp = new Object*[mCapacity];
 	memset(tmp, 0, sizeof(Object*) * mCapacity);
