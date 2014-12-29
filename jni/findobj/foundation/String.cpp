@@ -1,5 +1,6 @@
 #include "String.h"
 #include "Constant.h"
+#include "findobj/Util.h"
 
 String::String()
 {
@@ -50,7 +51,7 @@ char* String::toCharArray()
 bool String::equals(Object *obj)
 {
 	if(obj != NULL &&
-			obj->instanceOf(DEF_CLASS_STRING)) {
+			obj->instanceOf(this->whoAmI())) {
 		String *str = (String*)obj;
 		if(mData != NULL &&
 				str->mData != NULL &&
@@ -86,5 +87,5 @@ int String::hashCode()
 
 const char* String::whoAmI()
 {
-	return DEF_CLASS_STRING;
+	return "findobj.foundation.String";
 }

@@ -1,8 +1,8 @@
 #include "Object.h"
+#include "findobj/Util.h"
 
 Object::Object()
 {
-	mClassName = whoAmI();
 	retain();
 }
 
@@ -67,14 +67,15 @@ void Object::assign(Object **pl, Object **pr)
 
 const char* Object::whoAmI()
 {
-	return NULL;
+	return "findobj.foundation.Object";
 }
 
 bool Object::instanceOf(const char* className)
 {
-	if(mClassName != NULL &&
+	const char *myName = whoAmI();
+	if(myName != NULL &&
 			className != NULL) {
-		return (0 == strcmp(mClassName, className));
+		return (0 == strcmp(myName, className));
 	}
 	return false;
 }

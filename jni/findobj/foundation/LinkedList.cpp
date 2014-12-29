@@ -52,7 +52,7 @@ Object* LinkedList::get(int index)
 void LinkedList::remove(int index)
 {
 	if(index >= 0 && index < mSize) {
-		LinkedNode *node = NULL, *nodeTmp = NULL;
+		LinkedNode *node = NULL;
 		if(index == 0) {
 			node = mHead;
 			mHead = mHead->getNext();

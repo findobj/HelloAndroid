@@ -67,21 +67,35 @@ void test_linkedlist()
 	list->release();
 }
 
-
+void test_hashmap()
+{
+	HashMap *hashMap = new HashMap();
+	char *buffer = new char[128];
+	for(int i = 0; i < 100; i++) {
+		sprintf(buffer, "item %d", i);
+		String *s = new String(buffer);
+		hashMap->put(s, new Tile(1));
+		s->release();
+	}
+	Log::i("test_hashmap", "lih print hashmap before(%d", hashMap->size());
+	for(int i = 0; i < 100; i++) {
+		sprintf(buffer, "item %d", i);
+		String *s = new String(buffer);
+		if(!hashMap->containsKey(s)) {
+			Log::i("test_hashmap", "lih containsKey not: %s", s->toCharArray());
+		}
+		hashMap->remove(s);
+		s->release();
+	}
+	Log::i("test_hashmap", "lih print hashmap after(%d", hashMap->size());
+	delete hashMap;
+}
 
 void AStar::test()
 {
-	Log::i("AStar", "test start");
+	Log::i("AStar", "lih test start");
 //	test_arraylist();
 //	test_linkedlist();
-//	HashMap *hashMap = new HashMap();
-//	hashMap->put(new String("abc"), new Tile(1));
-//	Tile *tile = (Tile*)hashMap->get(new String("abc"));
-//	if(tile != NULL) {
-//		Log::i("AStar", "found: %d", tile->index);
-//	} else {
-//		Log::i("AStar", "not found");
-//	}
-//	delete hashMap;
-	Log::i("AStar", "test end");
+	test_hashmap();
+	Log::i("AStar", "lih test end");
 }
