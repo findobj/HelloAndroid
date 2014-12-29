@@ -26,13 +26,6 @@ Object* LinkedNode::getData()
 	return mData;
 }
 
-Object* LinkedNode::removeData()
-{
-	Object *tmp = mData;
-	mData = NULL;
-	return tmp;
-}
-
 void LinkedNode::setNext(LinkedNode *next)
 {
 	Object::assign((Object**)(&mNext), (Object**)(&next));

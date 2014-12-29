@@ -33,6 +33,7 @@ char* LLog::stringFormat(const char *format, va_list ap)
 					char *tmp2 = result;
 					result = resultTmp;
 					delete tmp2;
+					delete resultLeft;
 					i = tmpI;
 					break;
 				}
@@ -52,6 +53,7 @@ char* LLog::stringFormat(const char *format, va_list ap)
 					char *tmp2 = result;
 					result = resultTmp;
 					delete tmp2;
+					delete resultLeft;
 					i = tmpI;
 					break;
 				}
