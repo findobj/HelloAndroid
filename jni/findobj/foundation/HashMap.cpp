@@ -213,7 +213,5 @@ int HashMap::hashCode(Object *key)
 	int h = key->hashCode();
 	h = h & (mBucketSize - 1);
 
-	Log::i("HashMap", "lih hashCode: %d", h);
-
 	return h;
 }
