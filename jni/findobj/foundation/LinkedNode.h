@@ -14,7 +14,6 @@ public:
 
 	void setNext(LinkedNode *next);
 	LinkedNode* getNext();
-	LinkedNode* removeNext();
 private:
 	Object *mData;
 	LinkedNode *mNext;

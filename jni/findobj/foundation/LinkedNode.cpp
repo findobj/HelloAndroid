@@ -28,17 +28,10 @@ Object* LinkedNode::getData()
 
 void LinkedNode::setNext(LinkedNode *next)
 {
-	Object::assign((Object**)(&mNext), (Object**)(&next));
+	mNext = next;
 }
 
 LinkedNode* LinkedNode::getNext()
 {
 	return mNext;
-}
-
-LinkedNode* LinkedNode::removeNext()
-{
-	LinkedNode *tmp = mNext;
-	mNext = NULL;
-	return tmp;
 }

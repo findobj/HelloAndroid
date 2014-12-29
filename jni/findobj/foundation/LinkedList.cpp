@@ -31,7 +31,6 @@ void LinkedList::add(Object *obj)
 			last = last->getNext();
 		}
 		last->setNext(node);
-		node->release();
 	}
 	mSize++;
 }
@@ -65,13 +64,9 @@ void LinkedList::remove(int index)
 				node = node->getNext();
 				index--;
 			}
-			prevNode->removeNext()->release();
 			prevNode->setNext(node->getNext());
 		}
-		nodeTmp = node->removeNext();
-		if(nodeTmp != NULL) {
-			nodeTmp->release();
-		}
+		node->setNext(NULL);
 		node->release();
 		mSize--;
 	}

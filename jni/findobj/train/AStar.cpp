@@ -56,10 +56,10 @@ void test_linkedlist()
 		list->add(s);
 		s->release();
 	}
-//	while(list->size() > 0) {
-//		list->remove(0);
-//	}
-	list->remove(0);
+	while(list->size() > 0) {
+		list->remove(list->size() - 1);
+	}
+//	list->remove(0);
 //	list->remove(1);
 //	list->remove(list->size() - 1);
 	print_linkedlist(list);
@@ -67,11 +67,13 @@ void test_linkedlist()
 	list->release();
 }
 
+
+
 void AStar::test()
 {
 	Log::i("AStar", "test start");
 //	test_arraylist();
-	test_linkedlist();
+//	test_linkedlist();
 //	HashMap *hashMap = new HashMap();
 //	hashMap->put(new String("abc"), new Tile(1));
 //	Tile *tile = (Tile*)hashMap->get(new String("abc"));
