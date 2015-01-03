@@ -29,7 +29,10 @@ void test_arraylist()
 //	while(list->size() > 0) {
 //		list->remove(0);
 //	}
-//	print_arraylist(list);
+	list->remove(0);
+	list->remove(20);
+	list->remove(list->size() - 1);
+	print_arraylist(list);
 	delete buffer;
 	list->release();
 }
@@ -60,7 +63,7 @@ void test_linkedlist()
 		list->remove(list->size() - 1);
 	}
 //	list->remove(0);
-//	list->remove(1);
+//	list->remove(20);
 //	list->remove(list->size() - 1);
 	print_linkedlist(list);
 	delete buffer;
@@ -70,25 +73,37 @@ void test_linkedlist()
 void test_hashmap()
 {
 	HashMap *hashMap = new HashMap();
+	int len = 1024;
 	char *buffer = new char[128];
-	for(int i = 0; i < 100; i++) {
+	for(int i = 0; i < len; i++) {
 		sprintf(buffer, "item %d", i);
 		String *s = new String(buffer);
-		hashMap->put(s, new Tile(1));
+		Tile *tile = new Tile(i);
+		hashMap->put(s, tile);
 		s->release();
+		tile->release();
 	}
-	Log::i("test_hashmap", "lih print hashmap before(%d", hashMap->size());
-	for(int i = 0; i < 100; i++) {
-		sprintf(buffer, "item %d", i);
-		String *s = new String(buffer);
-		if(!hashMap->containsKey(s)) {
-			Log::i("test_hashmap", "lih containsKey not: %s", s->toCharArray());
-		}
-		hashMap->remove(s);
-		s->release();
+	String *s = new String("item 5");
+	Tile *tile = (Tile*)hashMap->get(s);
+	if(tile != NULL) {
+		Log::i("test_hashmap", "lih contains item 5: %d", tile->index);
+	} else {
+		Log::i("test_hashmap", "lih contains item 5 not");
 	}
-	Log::i("test_hashmap", "lih print hashmap after(%d", hashMap->size());
-	delete hashMap;
+	s->release();
+//	Log::i("test_hashmap", "lih print hashmap before(%d", hashMap->size());
+//	for(int i = len - 1; i >= 0; i--) {
+//		sprintf(buffer, "item %d", i);
+//		String *s = new String(buffer);
+//		if(!hashMap->containsKey(s)) {
+//			Log::i("test_hashmap", "lih containsKey not: %s", s->toCharArray());
+//		}
+//		hashMap->remove(s);
+//		s->release();
+//	}
+//	Log::i("test_hashmap", "lih print hashmap after(%d", hashMap->size());
+	hashMap->release();
+	delete buffer;
 }
 
 void AStar::test()
@@ -96,6 +111,6 @@ void AStar::test()
 	Log::i("AStar", "lih test start");
 //	test_arraylist();
 //	test_linkedlist();
-	test_hashmap();
+//	test_hashmap();
 	Log::i("AStar", "lih test end");
 }

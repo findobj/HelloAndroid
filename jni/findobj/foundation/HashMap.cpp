@@ -40,7 +40,9 @@ void HashMap::put(Object *key, Object *value)
 		bucket = new LinkedList();
 		mBuckets[index] = bucket;
 	}
-	bucket->add(new Pair(key, value));
+	Pair *item = new Pair(key, value);
+	bucket->add(item);
+	item->release();
 	mSize++;
 }
 
