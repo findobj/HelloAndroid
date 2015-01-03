@@ -6,7 +6,7 @@ CXXSRCS = CppMix.cpp \
 		findobj/train/AStar.cpp \
 		findobj/train/Tile.cpp \
 		findobj/component/AppDelegate.cpp \
-		findobj/foundation/BitTreeNode.cpp \
+		findobj/foundation/BiTreeNode.cpp \
 		findobj/foundation/LinkedNode.cpp \
 		findobj/foundation/Point.cpp \
 		findobj/foundation/Rect.cpp \
@@ -15,6 +15,9 @@ CXXSRCS = CppMix.cpp \
 		findobj/foundation/ArrayList.cpp \
 		findobj/foundation/LinkedList.cpp \
 		findobj/foundation/HashMap.cpp \
+		findobj/foundation/BiTree.cpp \
+		findobj/foundation/Heap.cpp \
+		findobj/foundation/Graph.cpp \
 		findobj/foundation/Iterator.cpp \
 		findobj/foundation/Object.cpp \
 		findobj/foundation/String.cpp \

@@ -12,9 +12,15 @@
 #include "./foundation/Size.h"
 #include "./foundation/Pair.h"
 
+#include "./foundation/LinkedNode.h"
+#include "./foundation/BiTreeNode.h"
+
 #include "./foundation/ArrayList.h"
 #include "./foundation/LinkedList.h"
 #include "./foundation/HashMap.h"
+#include "./foundation/BiTree.h"
+#include "./foundation/Heap.h"
+#include "./foundation/Graph.h"
 #include "./foundation/Iterator.h"
 
 #endif
