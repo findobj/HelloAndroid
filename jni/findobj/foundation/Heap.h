@@ -1,15 +1,29 @@
 #ifndef __HEAP_H__
 #define __HEAP_H__
 
-#include "BiTree.h"
+#include "Object.h"
+#include "Comparator.h"
 
-class Heap : public BiTree
+class ArrayList;
+
+class Heap : public Object
 {
 public:
-	Heap();
+	Heap(Comparator *comparator);
 	virtual ~Heap();
 public:
+	void insert(Object *data);
+	Object* extract();
+	Object* peek();
+	int size();
+public:
+	void heapSort();
 private:
+	void heapFyDown(int position);
+	void heapFyUp(int position);
+private:
+	ArrayList *mList;
+	Comparator *mComparator;
 };
 
 #endif

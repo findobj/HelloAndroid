@@ -28,6 +28,31 @@ void ArrayList::add(Object *obj)
 	mArray[mSize++] = obj;
 }
 
+void ArrayList::add(int index, Object *obj)
+{
+	if(obj == NULL) {
+		return ;
+	}
+	if(index < 0 || index > mSize) {
+		return ;
+	}
+	increase();
+	obj->retain();
+	Object** tmp = NULL;
+	int remain = mSize - index;
+	if(remain > 0) {
+		tmp = new Object*[remain];
+		memset(tmp, 0, sizeof(Object*) * remain);
+		memcpy(tmp, mArray + index, sizeof(Object*) * remain);
+	}
+	mArray[index] = obj;
+	if(remain > 0) {
+		memcpy(mArray + index + 1, tmp, sizeof(Object*) * remain);
+		delete tmp;
+	}
+	mSize++;
+}
+
 void ArrayList::addAll(ArrayList *list)
 {
 	if(list == NULL) {
@@ -63,6 +88,19 @@ void ArrayList::remove(int index)
 		mSize--;
 
 		decrease();
+	}
+}
+
+void ArrayList::swap(int left, int right)
+{
+	if(left >= 0 &&
+			left < mSize &&
+			right >= 0 &&
+			right < mSize &&
+			left != right) {
+		Object *tmp = mArray[left];
+		mArray[left] = mArray[right];
+		mArray[right] = tmp;
 	}
 }
 

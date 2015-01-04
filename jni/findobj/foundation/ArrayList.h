@@ -11,9 +11,11 @@ public:
 	virtual ~ArrayList();
 public:
 	virtual void add(Object *obj);
+	virtual void add(int index, Object *obj);
 	virtual void addAll(ArrayList *list);
 	virtual Object* get(int index);
 	virtual void remove(int index);
+	virtual void swap(int left, int right);
 	virtual void clear();
 	virtual bool contains(Object *obj);
 	virtual int size();
