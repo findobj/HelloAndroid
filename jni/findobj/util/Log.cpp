@@ -20,6 +20,7 @@ void Log::i(const char *tag, const char *format, ...)
 	strcpy(decorFormat, "lih ");
 	strcat(decorFormat, format);
 	log(PRIO_INFO, tag, decorFormat, argp);
+	delete decorFormat;
 	va_end(argp);
 }
 

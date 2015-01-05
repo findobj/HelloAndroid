@@ -170,6 +170,7 @@ void print_heap(Heap *heap)
 		Tile *t = (Tile*)list->get(i);
 		Log::i("tile", "tile %d", t->index);
 	}
+	list->release();
 	Log::i("heap", "print heap end");
 }
 
@@ -178,15 +179,28 @@ void test_heap()
 	Log::i("AStar", "test_heap start");
 	TileComparator *tileComparator = new TileComparator();
 	Heap *heap = new Heap(tileComparator);
-	heap->insert(new Tile(5));
-	heap->insert(new Tile(2));
-	heap->insert(new Tile(6));
-	heap->insert(new Tile(3));
-	heap->insert(new Tile(7));
+	Tile *tile = new Tile(5);
+	heap->insert(tile);
+	tile->release();
+	tile = new Tile(2);
+	heap->insert(tile);
+	tile->release();
+	tile = new Tile(6);
+	heap->insert(tile);
+	tile->release();
+	tile = new Tile(3);
+	heap->insert(tile);
+	tile->release();
+	tile = new Tile(7);
+	heap->insert(tile);
+	tile->release();
 	print_heap(heap);
-	Tile *tile = (Tile*)heap->extract();
+	tile = (Tile*)heap->extract();
 	Log::i("tile", "extract tile %d", tile->index);
-	heap->insert(new Tile(1));
+	tile->release();
+	tile = new Tile(1);
+	heap->insert(tile);
+	tile->release();
 	print_heap(heap);
 	tileComparator->release();
 	heap->release();
@@ -237,6 +251,6 @@ void AStar::test()
 //	test_hashmap();
 //	test_bitree();
 //	test_heap();
-	test_graph();
+//	test_graph();
 	Log::i("AStar", "test end");
 }

@@ -68,6 +68,7 @@ int Heap::size()
 
 ArrayList* Heap::toArrayList()
 {
+	mList->retain();
 	return mList;
 }
 
