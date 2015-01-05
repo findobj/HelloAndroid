@@ -66,9 +66,9 @@ int Heap::size()
 	return mList->size();
 }
 
-void Heap::heapSort()
+ArrayList* Heap::toArrayList()
 {
-
+	return mList;
 }
 
 void Heap::heapFyDown(int position)

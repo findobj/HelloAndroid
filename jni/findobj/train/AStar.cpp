@@ -151,12 +151,55 @@ void test_bitree()
 	tree->release();
 }
 
+class TileComparator : public Comparator
+{
+public:
+	int compare(Object *left, Object *right)
+	{
+		Tile *tileLeft = (Tile*)left;
+		Tile *tileRight = (Tile*)right;
+		return (tileLeft->index - tileRight->index);
+	}
+};
+
+void print_heap(Heap *heap)
+{
+	ArrayList *list = heap->toArrayList();
+	Log::i("heap", "print heap start(%d", list->size());
+	for(int i = 0; i < list->size(); i++) {
+		Tile *t = (Tile*)list->get(i);
+		Log::i("tile", "tile %d", t->index);
+	}
+	Log::i("heap", "print heap end");
+}
+
+void test_heap()
+{
+	Log::i("AStar", "test_heap start");
+	TileComparator *tileComparator = new TileComparator();
+	Heap *heap = new Heap(tileComparator);
+	heap->insert(new Tile(5));
+	heap->insert(new Tile(2));
+	heap->insert(new Tile(6));
+	heap->insert(new Tile(3));
+	heap->insert(new Tile(7));
+	print_heap(heap);
+	Tile *tile = (Tile*)heap->extract();
+	Log::i("tile", "extract tile %d", tile->index);
+	heap->insert(new Tile(1));
+	print_heap(heap);
+	tileComparator->release();
+	heap->release();
+	Log::i("AStar", "test_heap end");
+}
+
 void AStar::test()
 {
-	Log::i("AStar", "lih test start");
+	Log::i("AStar", "test start");
 //	test_arraylist();
 //	test_linkedlist();
 //	test_hashmap();
 //	test_bitree();
-	Log::i("AStar", "lih test end");
+	test_heap();
+	Log::i("AStar", "test end");
 }

@@ -34,13 +34,6 @@ Object* Pair::getLeft()
 	return mLeft;
 }
 
-Object* Pair::removeLeft()
-{
-	Object *tmp = mLeft;
-	mLeft = NULL;
-	return tmp;
-}
-
 void Pair::setRight(Object *right)
 {
 	Object::assign((Object**)(&mRight), (Object**)(&right));
@@ -49,13 +42,6 @@ void Pair::setRight(Object *right)
 Object* Pair::getRight()
 {
 	return mRight;
-}
-
-Object* Pair::removeRight()
-{
-	Object *tmp = mRight;
-	mRight = NULL;
-	return tmp;
 }
 
 

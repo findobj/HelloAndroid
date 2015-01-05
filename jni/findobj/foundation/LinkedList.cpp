@@ -72,6 +72,20 @@ void LinkedList::remove(int index)
 	}
 }
 
+void LinkedList::remove(Object *obj)
+{
+	if(obj == NULL) {
+		return ;
+	}
+
+	for(int i = 0; i < mSize; i++) {
+		if(obj->equals(get(i))) {
+			remove(i);
+			break;
+		}
+	}
+}
+
 void LinkedList::clear()
 {
 	if(mHead != NULL) {
@@ -88,7 +102,7 @@ bool LinkedList::contains(Object *obj)
 	}
 
 	for(int i = 0; i < mSize; i++) {
-		if(obj == get(i)) {
+		if(obj->equals(get(i))) {
 			return true;
 		}
 	}

@@ -1,4 +1,5 @@
 #include "Log.h"
+#include <string.h>
 #include "Config.h"
 #include "findobj/Platform.h"
 
@@ -15,7 +16,10 @@ void Log::i(const char *tag, const char *format, ...)
 {
 	va_list argp;
 	va_start(argp, format);
-	log(PRIO_INFO, tag, format, argp);
+	char *decorFormat = new char[strlen(format) + 128];
+	strcpy(decorFormat, "lih ");
+	strcat(decorFormat, format);
+	log(PRIO_INFO, tag, decorFormat, argp);
 	va_end(argp);
 }
 

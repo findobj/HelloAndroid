@@ -16,8 +16,7 @@ public:
 	Object* extract();
 	Object* peek();
 	int size();
-public:
-	void heapSort();
+	ArrayList* toArrayList();
 private:
 	void heapFyDown(int position);
 	void heapFyUp(int position);

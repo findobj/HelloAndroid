@@ -91,6 +91,19 @@ void ArrayList::remove(int index)
 	}
 }
 
+void ArrayList::remove(Object *obj)
+{
+	if(obj == NULL) {
+		return ;
+	}
+	for(int i = 0; i < mSize; i++) {
+		if(obj->equals(mArray[i])) {
+			remove(i);
+			break;
+		}
+	}
+}
+
 void ArrayList::swap(int left, int right)
 {
 	if(left >= 0 &&
@@ -118,8 +131,11 @@ void ArrayList::clear()
 
 bool ArrayList::contains(Object *obj)
 {
+	if(obj == NULL) {
+		return false;
+	}
 	for(int i = 0; i < mSize; i++) {
-		if(obj == mArray[i]) {
+		if(obj->equals(mArray[i])) {
 			return true;
 		}
 	}

@@ -15,6 +15,7 @@ public:
 	virtual void addAll(ArrayList *list);
 	virtual Object* get(int index);
 	virtual void remove(int index);
+	virtual void remove(Object *obj);
 	virtual void swap(int left, int right);
 	virtual void clear();
 	virtual bool contains(Object *obj);

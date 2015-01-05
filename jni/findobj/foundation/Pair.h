@@ -12,11 +12,9 @@ public:
 public:
 	void setLeft(Object *left);
 	Object* getLeft();
-	Object* removeLeft();
 
 	void setRight(Object *right);
 	Object* getRight();
-	Object* removeRight();
 private:
 	Object *mLeft;
 	Object *mRight;
