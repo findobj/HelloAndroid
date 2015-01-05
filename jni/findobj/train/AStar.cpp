@@ -193,6 +193,42 @@ void test_heap()
 	Log::i("AStar", "test_heap end");
 }
 
+void test_graph()
+{
+	Log::i("AStar", "test_graph start");
+	Graph *graph = new Graph();
+	Tile *tile1 = new Tile(1);
+	Tile *tile2 = new Tile(2);
+	graph->insertVertex(tile1);
+	graph->insertVertex(tile2);
+	graph->insertEdge(tile1, tile2);
+	if(graph->isAdjacent(tile1, tile2)) {
+		Log::i("AStar", "isAdjacent(1-2) true");
+	} else {
+		Log::i("AStar", "isAdjacent(1-2) false");
+	}
+	if(graph->isAdjacent(tile2, tile1)) {
+		Log::i("AStar", "isAdjacent(2-1) true");
+	} else {
+		Log::i("AStar", "isAdjacent(2-1) false");
+	}
+	graph->insertEdge(tile2, tile1);
+	if(graph->isAdjacent(tile1, tile2)) {
+		Log::i("AStar", "isAdjacent(1-2) true");
+	} else {
+		Log::i("AStar", "isAdjacent(1-2) false");
+	}
+	if(graph->isAdjacent(tile2, tile1)) {
+		Log::i("AStar", "isAdjacent(2-1) true");
+	} else {
+		Log::i("AStar", "isAdjacent(2-1) false");
+	}
+	tile1->release();
+	tile2->release();
+	graph->release();
+	Log::i("AStar", "test_graph end");
+}
+
 void AStar::test()
 {
 	Log::i("AStar", "test start");
@@ -200,6 +236,7 @@ void AStar::test()
 //	test_linkedlist();
 //	test_hashmap();
 //	test_bitree();
-	test_heap();
+//	test_heap();
+	test_graph();
 	Log::i("AStar", "test end");
 }

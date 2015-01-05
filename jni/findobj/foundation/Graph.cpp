@@ -53,6 +53,10 @@ void Graph::insertEdge(Object *left, Object *right)
 			right == NULL) {
 		return ;
 	}
+	if(!containsVertex(left) ||
+			!containsVertex(right)) {
+		return ;
+	}
 
 	for(int i = 0; i < mList->size(); i++) {
 		Pair *pair = (Pair*)mList->get(i);
