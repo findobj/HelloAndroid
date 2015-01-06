@@ -22,7 +22,7 @@ BiTreeNode::~BiTreeNode()
 
 void BiTreeNode::setData(Object *data)
 {
-	Object::assign(&mData, &data);
+	Object::assign((Object**)&mData, (Object**)&data);
 }
 
 Object* BiTreeNode::getData()

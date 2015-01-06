@@ -4,10 +4,12 @@ CURR_PATH = $(shell pwd)
 	
 CXXSRCS = CppMix.cpp \
 		findobj/train/AStar.cpp \
+		findobj/train/GraphRouter.cpp \
 		findobj/train/Tile.cpp \
 		findobj/component/AppDelegate.cpp \
 		findobj/foundation/BiTreeNode.cpp \
 		findobj/foundation/LinkedNode.cpp \
+		findobj/foundation/SearchNode.cpp \
 		findobj/foundation/Point.cpp \
 		findobj/foundation/Rect.cpp \
 		findobj/foundation/Size.cpp \

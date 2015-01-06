@@ -2,7 +2,7 @@
 #include "findobj/Util.h"
 #include "findobj/Foundation.h"
 #include "Tile.h"
-#include "findobj/platform/linux/LLog.h"
+#include "GraphRouter.h"
 
 void print_arraylist(ArrayList *list)
 {
@@ -243,6 +243,75 @@ void test_graph()
 	Log::i("AStar", "test_graph end");
 }
 
+void test_maze()
+{
+	Log::i("AStar", "test_maze start");
+	Graph *graph = new Graph();
+	int row = 10;
+	int column = 10;
+	int tiles[row][column] = {
+			1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			1, 0, 0, 0, 1, 0, 0, 0, 0, 1,
+			1, 0, 1, 0, 1, 0, 1, 1, 1, 1,
+			1, 0, 1, 0, 0, 0, 0, 0, 0, 1,
+			1, 0, 1, 0, 1, 1, 1, 1, 0, 1,
+			1, 0, 0, 0, 1, 1, 0, 1, 0, 1,
+			1, 1, 0, 1, 0, 0, 0, 1, 0, 1,
+			1, 1, 1, 0, 0, 1, 0, 1, 0, 1,
+			1, 0, 0, 0, 1, 1, 0, 0, 0, 1,
+			1, 0, 1, 1, 1, 1, 1, 1, 1, 1
+	};
+	for(int i = 0; i < row; i++) {
+		for(int j = 0; j < column; j++) {
+			Tile* tile = new Tile(i, j);
+			tile->state = tiles[i][j];
+			graph->insertVertex(tile);
+			tile->release();
+		}
+	}
+	for(int i = 0; i < row; i++) {
+		for(int j = 0; j < column; j++) {
+			Tile* tile = new Tile(i, j);
+			Tile *tmp = NULL;
+			if(j > 0 &&
+					tiles[i][j - 1] == 0) {
+				tmp = new Tile(i, j - 1);
+				graph->insertEdge(tile, tmp);
+			}
+			if(j < column - 1 &&
+					tiles[i][j + 1] == 0) {
+				tmp = new Tile(i, j + 1);
+				graph->insertEdge(tile, tmp);
+			}
+			if(i > 0 &&
+					tiles[i - 1][j] == 0) {
+				tmp = new Tile(i - 1, j);
+				graph->insertEdge(tile, tmp);
+			}
+			if(i < row - 1 &&
+					tiles[i + 1][j] == 0) {
+				tmp = new Tile(i + 1, j);
+				graph->insertEdge(tile, tmp);
+			}
+		}
+	}
+
+	GraphRouter *router = new GraphRouter(graph);
+	Tile *tileStart = new Tile(1, 1);
+	Tile *tileEnd = new Tile(9, 1);
+	ArrayList *list = router->findRoute(tileStart, tileEnd);
+	if(list != NULL) {
+		Log::i("AStar", "findRoute succed");
+	} else {
+		Log::i("AStar", "findRoute failed");
+	}
+	list->release();
+	tileStart->release();
+	tileEnd->release();
+	graph->release();
+	Log::i("AStar", "test_maze end");
+}
+
 void AStar::test()
 {
 	Log::i("AStar", "test start");
@@ -252,5 +321,6 @@ void AStar::test()
 //	test_bitree();
 //	test_heap();
 //	test_graph();
+	test_maze();
 	Log::i("AStar", "test end");
 }
