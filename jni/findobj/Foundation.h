@@ -14,6 +14,7 @@
 
 #include "./foundation/LinkedNode.h"
 #include "./foundation/BiTreeNode.h"
+#include "./foundation/SearchNode.h"
 
 #include "./foundation/ArrayList.h"
 #include "./foundation/LinkedList.h"

@@ -102,7 +102,7 @@ bool Graph::containsVertex(Object *vertex)
 	return false;
 }
 
-bool Graph::isAdjacent(Object *left, Object *right)
+bool Graph::isAdj(Object *left, Object *right)
 {
 	if(left == NULL ||
 			right == NULL) {
@@ -147,5 +147,21 @@ ArrayList* Graph::vertexToList()
 		vertexList->add(pair->getLeft());
 	}
 	return vertexList;
+}
+
+LinkedList* Graph::adjToList(Object *vertex)
+{
+	LinkedList* result = NULL;
+	for(int i = 0; i < mList->size(); i++) {
+		Pair *pair = (Pair*)mList->get(i);
+		if(vertex->equals(pair->getLeft())) {
+			result = (LinkedList*)pair->getRight();
+			break;
+		}
+	}
+	if(result != NULL) {
+		result->retain();
+	}
+	return result;
 }
 

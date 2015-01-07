@@ -216,23 +216,23 @@ void test_graph()
 	graph->insertVertex(tile1);
 	graph->insertVertex(tile2);
 	graph->insertEdge(tile1, tile2);
-	if(graph->isAdjacent(tile1, tile2)) {
+	if(graph->isAdj(tile1, tile2)) {
 		Log::i("AStar", "isAdjacent(1-2) true");
 	} else {
 		Log::i("AStar", "isAdjacent(1-2) false");
 	}
-	if(graph->isAdjacent(tile2, tile1)) {
+	if(graph->isAdj(tile2, tile1)) {
 		Log::i("AStar", "isAdjacent(2-1) true");
 	} else {
 		Log::i("AStar", "isAdjacent(2-1) false");
 	}
 	graph->insertEdge(tile2, tile1);
-	if(graph->isAdjacent(tile1, tile2)) {
+	if(graph->isAdj(tile1, tile2)) {
 		Log::i("AStar", "isAdjacent(1-2) true");
 	} else {
 		Log::i("AStar", "isAdjacent(1-2) false");
 	}
-	if(graph->isAdjacent(tile2, tile1)) {
+	if(graph->isAdj(tile2, tile1)) {
 		Log::i("AStar", "isAdjacent(2-1) true");
 	} else {
 		Log::i("AStar", "isAdjacent(2-1) false");
@@ -249,7 +249,7 @@ void test_maze()
 	Graph *graph = new Graph();
 	int row = 10;
 	int column = 10;
-	int tiles[row][column] = {
+	int tiles[10][10] = {
 			1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
 			1, 0, 0, 0, 1, 0, 0, 0, 0, 1,
 			1, 0, 1, 0, 1, 0, 1, 1, 1, 1,
@@ -276,6 +276,7 @@ void test_maze()
 			if(j > 0 &&
 					tiles[i][j - 1] == 0) {
 				tmp = new Tile(i, j - 1);
+				tmp->state = 0;
 				graph->insertEdge(tile, tmp);
 			}
 			if(j < column - 1 &&
@@ -302,6 +303,10 @@ void test_maze()
 	ArrayList *list = router->findRoute(tileStart, tileEnd);
 	if(list != NULL) {
 		Log::i("AStar", "findRoute succed");
+		for(int i = 0; i < list->size(); i++) {
+			Tile *tile = (Tile*)list->get(i);
+			Log::i("AStar", "tile(%d,%d)", tile->x, tile->y);
+		}
 	} else {
 		Log::i("AStar", "findRoute failed");
 	}

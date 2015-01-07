@@ -4,6 +4,7 @@
 #include "Object.h"
 
 class ArrayList;
+class LinkedList;
 
 class Graph : public Object
 {
@@ -18,12 +19,13 @@ public:
 	virtual void removeEdge(Object *left, Object *right);
 
 	virtual bool containsVertex(Object *vertex);
-	virtual bool isAdjacent(Object *left, Object *right);
+	virtual bool isAdj(Object *left, Object *right);
 
 	virtual int sizeOfVertex();
 	virtual int sizeOfEdge();
 
 	virtual ArrayList* vertexToList();
+	virtual LinkedList* adjToList(Object *vertex);
 private:
 	ArrayList *mList;
 };

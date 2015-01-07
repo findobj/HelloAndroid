@@ -11,12 +11,23 @@ public:
 public:
 	virtual ArrayList* findRoute(Object *start, Object *end);
 private:
-	virtual void findRouteInternal(Object *end, ArrayList *listToVisit, ArrayList *listVisited);
-	virtual void addToVisited(Object *data, ArrayList *listVisited);
-	virtual SearchNode* findNodeInVisited(Object *data, ArrayList *listVisited);
-	virtual bool existInVisited(Object *data, ArrayList *listVisited);
+	virtual bool findRouteInternal(Object *end);
+	virtual SearchNode* findBestFromOpenList(Object *end);
+	virtual void addToOpenList(Object *data, SearchNode *parent);
+	virtual SearchNode* getFromOpenList(Object *data);
+	virtual void removeFromOpenList(Object *data);
+	virtual bool containsInOpenList(Object *data);
+	virtual void addToCloseList(Object *data);
+	virtual bool containsInCloseList(Object *data);
+	virtual void addAdjToOpenList(SearchNode *node, Object *end);
+	virtual int getF(SearchNode *node, Object *end);
+	virtual int getG(SearchNode *node);
+	virtual int getH(Object *start, Object *end);
+	virtual int myAbs(int value);
 private:
 	Graph *graph;
+	ArrayList *listOpen;
+	ArrayList *listClose;
 };
 
 #endif
