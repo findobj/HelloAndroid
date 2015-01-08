@@ -247,29 +247,29 @@ void test_maze()
 {
 	Log::i("AStar", "test_maze start");
 	Graph *graph = new Graph();
-//	int row = 10;
-//	int column = 10;
-//	int tiles[10][10] = {
-//			1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
-//			1, 0, 0, 0, 1, 0, 0, 0, 0, 1,
-//			1, 0, 1, 0, 1, 0, 1, 1, 1, 1,
-//			1, 0, 1, 0, 0, 0, 0, 0, 0, 1,
-//			1, 0, 1, 0, 1, 1, 1, 1, 0, 1,
-//			1, 0, 0, 0, 1, 1, 0, 1, 0, 1,
-//			1, 1, 0, 1, 0, 0, 0, 1, 0, 1,
-//			1, 1, 1, 0, 0, 1, 0, 1, 0, 1,
-//			1, 0, 0, 0, 1, 1, 0, 0, 0, 1,
-//			1, 0, 1, 1, 1, 1, 1, 1, 1, 1
-//	};
-	int row = 5;
-	int column = 5;
-	int tiles[5][5] = {
-			0, 0, 0, 0, 0,
-			0, 0, 1, 0, 0,
-			0, 0, 1, 0, 0,
-			0, 0, 1, 0, 0,
-			0, 0, 0, 0, 0
+	int row = 10;
+	int column = 10;
+	int tiles[10][10] = {
+			1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+			1, 0, 0, 0, 1, 0, 0, 0, 0, 1,
+			1, 0, 1, 0, 1, 0, 1, 1, 1, 1,
+			1, 0, 1, 0, 0, 0, 0, 0, 0, 1,
+			1, 0, 1, 0, 1, 1, 1, 1, 0, 1,
+			1, 0, 0, 0, 1, 1, 0, 1, 0, 1,
+			1, 1, 0, 1, 0, 0, 0, 1, 0, 1,
+			1, 1, 1, 0, 0, 1, 0, 1, 0, 1,
+			1, 0, 0, 0, 1, 1, 0, 0, 0, 1,
+			1, 0, 1, 1, 1, 1, 1, 1, 1, 1
 	};
+//	int row = 5;
+//	int column = 5;
+//	int tiles[5][5] = {
+//			0, 0, 0, 0, 0,
+//			0, 0, 1, 0, 0,
+//			0, 0, 1, 0, 0,
+//			0, 0, 1, 0, 0,
+//			0, 0, 0, 0, 0
+//	};
 	for(int i = 0; i < row; i++) {
 		for(int j = 0; j < column; j++) {
 			Tile* tile = new Tile(i, j);
@@ -307,8 +307,10 @@ void test_maze()
 	}
 
 	GraphRouter *router = new GraphRouter(graph);
-	Tile *tileStart = new Tile(2, 0);
-	Tile *tileEnd = new Tile(2, 4);
+//	Tile *tileStart = new Tile(2, 0);
+//	Tile *tileEnd = new Tile(2, 4);
+	Tile *tileStart = new Tile(1, 1);
+	Tile *tileEnd = new Tile(9, 1);
 	ArrayList *list = router->findRoute(tileStart, tileEnd);
 	if(list != NULL &&
 			list->size() > 0) {
