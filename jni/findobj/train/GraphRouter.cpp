@@ -43,7 +43,6 @@ ArrayList* GraphRouter::findRoute(Object *start, Object *end)
 
 bool GraphRouter::findRouteInternal(Object *end)
 {
-	Log::i("GraphRouter", "findRouteInternal start(%d", listOpen->size());
 	if(listOpen->size() <= 0) {
 		return false;
 	}
