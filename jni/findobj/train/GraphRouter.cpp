@@ -2,6 +2,70 @@
 #include "findobj/Util.h"
 #include "Tile.h"
 
+class FindRouteFrame : public Object
+{
+public:
+	GraphRouter *graphRouter;
+	Object *end;
+	int jumpStep;
+};
+
+bool funcLoopForFindRouteInternal(GraphRouter *graphRouter, Object *end)
+{
+	Log::i("funcLoop", "funcLoopForFindRouteInternal start");
+	bool result = false;
+
+	Stack *funcStack = new Stack();
+	FindRouteFrame *frameFirst = new FindRouteFrame();
+	frameFirst->graphRouter = graphRouter;
+	frameFirst->end = end;
+	frameFirst->jumpStep = 0;
+	funcStack->push(frameFirst);
+	frameFirst->release();
+
+	while(funcStack->size() > 0) {
+		FindRouteFrame *frame = (FindRouteFrame*)funcStack->pop();
+
+		if(0 == frame->jumpStep) {
+			if(frame->graphRouter->getOpenList()->size() <= 0) {
+				frame->release();
+				continue;
+			}
+
+			SearchNode *node = frame->graphRouter->findBestFromOpenList(end);
+			if(node == NULL) {
+				frame->release();
+				continue;
+			}
+
+			Tile *tile = (Tile*)node->getData();
+			if(tile->equals(end)) {
+				frame->release();
+				continue;
+			}
+
+			node->retain();
+			frame->graphRouter->removeFromOpenList(node->getData());
+			frame->graphRouter->addToCloseList(node->getData());
+			frame->graphRouter->addAdjToOpenList(node, end);
+		//	node->release();
+
+			frame->jumpStep = 1;
+
+			FindRouteFrame *frameNext = new FindRouteFrame();
+			frameNext->graphRouter = graphRouter;
+			frameNext->end = end;
+			frameNext->jumpStep = 0;
+			funcStack->push(frameNext);
+			continue;
+		} else if(1 == frame->jumpStep) {
+			frame->release();
+		}
+	}
+
+	return result;
+}
+
 GraphRouter::GraphRouter(Graph *graph)
 {
 	this->graph = graph;
@@ -27,13 +91,12 @@ ArrayList* GraphRouter::findRoute(Object *start, Object *end)
 
 	if(graph->containsVertex(start)) {
 		addToOpenList(start, NULL);
-		bool found = findRouteInternal(end);
-		if(found) {
-			SearchNode *node = getFromOpenList(end);
-			while(node != NULL) {
-				listResult->add(0, node->getData());
-				node = node->getParent();
-			}
+		findRouteInternal(end);
+//		funcLoopForFindRouteInternal(this, end);
+		SearchNode *node = getFromOpenList(end);
+		while(node != NULL) {
+			listResult->add(0, node->getData());
+			node = node->getParent();
 		}
 	}
 
@@ -180,5 +243,14 @@ int GraphRouter::myAbs(int value)
 	return (value >= 0 ? value : -value);
 }
 
+ArrayList* GraphRouter::getOpenList()
+{
+	return listOpen;
+}
+
+ArrayList* GraphRouter::getCloseList()
+{
+	return listClose;
+}
 
 

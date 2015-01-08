@@ -10,8 +10,7 @@ public:
 	virtual ~GraphRouter();
 public:
 	virtual ArrayList* findRoute(Object *start, Object *end);
-private:
-	virtual bool findRouteInternal(Object *end);
+public:
 	virtual SearchNode* findBestFromOpenList(Object *end);
 	virtual void addToOpenList(Object *data, SearchNode *parent);
 	virtual SearchNode* getFromOpenList(Object *data);
@@ -24,6 +23,10 @@ private:
 	virtual int getG(SearchNode *node);
 	virtual int getH(Object *start, Object *end);
 	virtual int myAbs(int value);
+	virtual ArrayList* getOpenList();
+	virtual ArrayList* getCloseList();
+private:
+	virtual bool findRouteInternal(Object *end);
 private:
 	Graph *graph;
 	ArrayList *listOpen;

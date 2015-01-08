@@ -18,6 +18,8 @@
 
 #include "./foundation/ArrayList.h"
 #include "./foundation/LinkedList.h"
+#include "./foundation/Stack.h"
+#include "./foundation/Queue.h"
 #include "./foundation/HashMap.h"
 #include "./foundation/BiTree.h"
 #include "./foundation/Heap.h"

@@ -32,6 +32,8 @@ LOCAL_SRC_FILES := main.c \
 		findobj/foundation/Pair.cpp \
 		findobj/foundation/ArrayList.cpp \
 		findobj/foundation/LinkedList.cpp \
+		findobj/foundation/Stack.cpp \
+		findobj/foundation/Queue.cpp \
 		findobj/foundation/HashMap.cpp \
 		findobj/foundation/BiTree.cpp \
 		findobj/foundation/Heap.cpp \
