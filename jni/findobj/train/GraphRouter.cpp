@@ -1,4 +1,5 @@
 #include "GraphRouter.h"
+#include "findobj/Util.h"
 #include "Tile.h"
 
 GraphRouter::GraphRouter(Graph *graph)
@@ -24,13 +25,15 @@ ArrayList* GraphRouter::findRoute(Object *start, Object *end)
 	listOpen->clear();
 	listClose->clear();
 
-	addToOpenList(start, NULL);
-	bool found = findRouteInternal(end);
-	if(found) {
-		SearchNode *node = getFromOpenList(end);
-		while(node != NULL) {
-			listResult->add(0, node->getData());
-			node = node->getParent();
+	if(graph->containsVertex(start)) {
+		addToOpenList(start, NULL);
+		bool found = findRouteInternal(end);
+		if(found) {
+			SearchNode *node = getFromOpenList(end);
+			while(node != NULL) {
+				listResult->add(0, node->getData());
+				node = node->getParent();
+			}
 		}
 	}
 
@@ -40,6 +43,7 @@ ArrayList* GraphRouter::findRoute(Object *start, Object *end)
 
 bool GraphRouter::findRouteInternal(Object *end)
 {
+	Log::i("GraphRouter", "findRouteInternal start(%d", listOpen->size());
 	if(listOpen->size() <= 0) {
 		return false;
 	}
@@ -69,6 +73,10 @@ void GraphRouter::addAdjToOpenList(SearchNode *node, Object *end)
 	if(adjList->size() > 0) {
 		for(int i = 0; i < adjList->size(); i++) {
 			Object *adjData = adjList->get(i);
+			if(containsInCloseList(adjData)) {
+				continue;
+			}
+
 			if(containsInOpenList(adjData)) {
 				SearchNode *nodeOpen = getFromOpenList(adjData);
 				int oldG = getG(nodeOpen);
@@ -146,7 +154,7 @@ void GraphRouter::addToCloseList(Object *data)
 
 bool GraphRouter::containsInCloseList(Object *data)
 {
-	return listOpen->contains(data);
+	return listClose->contains(data);
 }
 
 int GraphRouter::getF(SearchNode *node, Object *end)
