@@ -12,7 +12,6 @@ public:
 
 bool funcLoopForFindRouteInternal(GraphRouter *graphRouter, Object *end)
 {
-	Log::i("funcLoop", "funcLoopForFindRouteInternal start");
 	bool result = false;
 
 	Stack *funcStack = new Stack();
@@ -43,6 +42,7 @@ bool funcLoopForFindRouteInternal(GraphRouter *graphRouter, Object *end)
 				frame->release();
 				continue;
 			}
+
 
 			node->retain();
 			frame->graphRouter->removeFromOpenList(node->getData());
@@ -91,8 +91,8 @@ ArrayList* GraphRouter::findRoute(Object *start, Object *end)
 
 	if(graph->containsVertex(start)) {
 		addToOpenList(start, NULL);
-		findRouteInternal(end);
-//		funcLoopForFindRouteInternal(this, end);
+//		findRouteInternal(end);
+		funcLoopForFindRouteInternal(this, end);
 		SearchNode *node = getFromOpenList(end);
 		while(node != NULL) {
 			listResult->add(0, node->getData());
